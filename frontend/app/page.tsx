@@ -1,14 +1,24 @@
 import { HeroSection } from "@/components/landing/hero";
 import { TechMarquee } from "@/components/landing/tech-marquee";
+import { ServicesSection } from "@/components/landing/services";
+import { SelectedWork } from "@/components/landing/selected-work";
+import { Process } from "@/components/landing/process";
+import { Testimonials } from "@/components/landing/testimonials";
+import { FAQ } from "@/components/landing/faq";
+import { getProjects } from "@/lib/api";
 
-export default function Home() {
+export default async function Home() {
+  const projects = await getProjects();
+
   return (
     <main className="flex min-h-screen flex-col">
       <HeroSection />
       <TechMarquee />
-      <section className="py-24 text-center">
-        <h2 className="text-3xl font-bold">More coming in Phase 4...</h2>
-      </section>
+      <ServicesSection />
+      <SelectedWork projects={projects} />
+      <Process />
+      <Testimonials />
+      <FAQ />
     </main>
   );
 }
