@@ -8,19 +8,19 @@ import { Button } from "@/components/ui/button";
 
 const navItems = [
   { name: "Services", href: "/services" },
+  { name: "Process", href: "/#process" },
   { name: "Work", href: "/work" },
-  { name: "Pricing", href: "/estimate" },
 ];
 
 export function Navbar() {
   const pathname = usePathname();
 
   return (
-    <header className="fixed top-0 z-50 w-full border-b border-zinc-200/20 bg-white/50 backdrop-blur-xl dark:bg-black/50">
+    <header className="fixed top-0 z-50 w-full border-b border-brand-black/5 bg-white/80 backdrop-blur-xl supports-[backdrop-filter]:bg-white/60">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         <Link href="/" className="flex items-center gap-2">
-          <div className="h-8 w-8 rounded-lg bg-blue-600" />
-          <span className="text-lg font-bold tracking-tight">AGENCY</span>
+          <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-brand-primary to-brand-secondary" />
+          <span className="text-xl font-bold tracking-tight text-brand-black font-heading">OddJobs</span>
         </Link>
 
         <nav className="hidden md:flex items-center gap-8">
@@ -29,10 +29,10 @@ export function Navbar() {
               key={item.href}
               href={item.href}
               className={cn(
-                "text-sm font-medium transition-colors hover:text-blue-500",
+                "text-sm font-medium transition-colors hover:text-brand-primary",
                 pathname === item.href
-                  ? "text-blue-600 dark:text-blue-400"
-                  : "text-zinc-600 dark:text-zinc-400"
+                  ? "text-brand-primary"
+                  : "text-brand-black/60"
               )}
             >
               {item.name}
@@ -41,16 +41,11 @@ export function Navbar() {
         </nav>
 
         <div className="flex items-center gap-4">
-          <div className="hidden lg:flex items-center gap-2">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-            </span>
-            <span className="text-xs font-mono text-zinc-500">Systems Normal</span>
-          </div>
-          <Button size="sm" variant="secondary" onClick={() => window.location.href='/contact'}>
-            Book Call
-          </Button>
+          <Link href="/contact">
+            <Button size="sm" className="rounded-full bg-brand-black text-white hover:bg-brand-secondary transition-colors px-6 shadow-md hover:shadow-lg">
+                Book a Call
+            </Button>
+          </Link>
         </div>
       </div>
     </header>

@@ -1,54 +1,90 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Monitor, Smartphone, BarChart3, ShieldCheck } from "lucide-react";
+"use client";
+
+import { HoverCard } from "@/components/animations/hover-card";
+import { ScrollReveal } from "@/components/animations/scroll-reveal";
+import { Brain, Bot, Wrench, Compass, Code, TrendingUp, ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 const services = [
   {
-    title: "Web Development",
-    description: "High-performance websites built with Next.js and React. Optimized for speed and SEO.",
-    icon: Monitor,
+    title: "AI & ML Solutions",
+    description: "Leverage advanced artificial intelligence to automate decision-making. LLM integration & predictive analytics.",
+    icon: Brain,
+    color: "bg-pastel-purple text-brand-secondary",
+    href: "/services/ai-integration",
   },
   {
-    title: "Mobile Apps",
-    description: "Native-like mobile experiences using cross-platform technologies.",
-    icon: Smartphone,
+    title: "Custom Automation",
+    description: "Bespoke automation tools designed to eliminate manual bottlenecks. We build custom software for your workflows.",
+    icon: Bot,
+    color: "bg-pastel-blue text-brand-primary",
+    href: "/services/automation",
   },
   {
-    title: "Growth Marketing",
-    description: "Data-driven strategies to increase traffic and convert visitors into customers.",
-    icon: BarChart3,
+    title: "Technical Debugging",
+    description: "Complex problem solving for legacy systems. We identify root causes and implement robust, long-term fixes.",
+    icon: Wrench,
+    color: "bg-pastel-teal text-brand-accent",
+    href: "/services/debugging",
   },
   {
-    title: "Security & Compliance",
-    description: "Enterprise-grade security audits and compliance implementations.",
-    icon: ShieldCheck,
+    title: "End-to-End Guidance",
+    description: "Strategic project management from concept to deployment. Architecture, stack selection, and execution.",
+    icon: Compass,
+    color: "bg-pastel-pink text-pink-600",
+    href: "/services/consulting",
+  },
+  {
+    title: "Web & App Development",
+    description: "Enterprise-grade web and mobile applications built for scale. Modern stacks like Next.js and Python.",
+    icon: Code,
+    color: "bg-orange-50 text-orange-600",
+    href: "/services/development",
+  },
+  {
+    title: "System Optimization",
+    description: "Enhancing existing platforms for speed, security, and reliability. Performance tuning and refactoring.",
+    icon: TrendingUp,
+    color: "bg-lime-50 text-lime-600",
+    href: "/services/optimization",
   },
 ];
 
 export function ServicesSection() {
   return (
-    <section className="py-24 bg-zinc-50 dark:bg-zinc-900/50">
-      <div className="container mx-auto px-4 md:px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Our Services</h2>
-          <p className="mx-auto mt-4 max-w-[700px] text-zinc-500 md:text-xl dark:text-zinc-400">
-            Comprehensive digital solutions to help your business grow and succeed in the modern era.
-          </p>
-        </div>
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {services.map((service) => (
-            <Card key={service.title} className="border-none shadow-md hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <div className="w-12 h-12 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mb-4">
-                  <service.icon className="h-6 w-6 text-blue-600 dark:text-blue-400" />
-                </div>
-                <CardTitle className="text-xl">{service.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-zinc-500 dark:text-zinc-400">
-                  {service.description}
+    <section className="py-32 bg-white relative">
+      <div className="container mx-auto px-6 lg:px-12">
+        <ScrollReveal width="100%">
+            <div className="text-center mb-20 max-w-3xl mx-auto">
+                <span className="text-brand-primary font-semibold tracking-wider uppercase text-sm mb-4 block">Our Expertise</span>
+                <h2 className="text-4xl md:text-5xl font-bold font-heading text-brand-black mb-6">
+                    Comprehensive Technical <br />
+                    <span className="text-brand-secondary">Capabilities.</span>
+                </h2>
+                <p className="text-xl text-brand-black/60 font-light">
+                    From intelligent automation to complex system debugging, we provide the technical backbone for your growth.
                 </p>
-              </CardContent>
-            </Card>
+            </div>
+        </ScrollReveal>
+        
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {services.map((service, index) => (
+            <ScrollReveal key={service.title} delay={index * 0.1}>
+                <Link href={service.href}>
+                    <HoverCard className="h-full border-transparent bg-brand-muted/50 hover:bg-white group transition-all duration-300">
+                        <div className={`w-14 h-14 rounded-2xl ${service.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                            <service.icon className="h-7 w-7" />
+                        </div>
+                        <h3 className="text-2xl font-bold text-brand-black mb-3 group-hover:text-brand-primary transition-colors">{service.title}</h3>
+                        <p className="text-brand-black/60 leading-relaxed mb-6">
+                            {service.description}
+                        </p>
+                        <div className="flex items-center text-sm font-semibold text-brand-black/40 group-hover:text-brand-primary transition-colors">
+                            Learn more <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                        </div>
+                    </HoverCard>
+                </Link>
+            </ScrollReveal>
           ))}
         </div>
       </div>

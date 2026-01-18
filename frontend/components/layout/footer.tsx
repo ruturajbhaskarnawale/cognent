@@ -1,72 +1,61 @@
 import Link from "next/link";
+import { Github, Twitter, Linkedin } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="border-t border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-950">
-      <div className="container mx-auto px-4 py-12 md:py-24">
+    <footer className="w-full border-t border-brand-black/5 bg-white py-12 md:py-24 lg:py-32">
+      <div className="container px-4 md:px-6 mx-auto">
         <div className="grid gap-8 lg:grid-cols-4">
           <div className="space-y-4">
-            <h3 className="text-lg font-bold">AGENCY</h3>
-            <p className="text-sm text-zinc-500 max-w-xs">
-              High-performance digital experiences for forward-thinking brands.
-              Built for speed, security, and scale.
+            <Link href="/" className="flex items-center gap-2">
+              <div className="h-6 w-6 rounded-lg bg-gradient-to-br from-brand-primary to-brand-secondary" />
+              <span className="text-lg font-bold font-heading text-brand-black">OddJobs</span>
+            </Link>
+            <p className="text-sm text-brand-black/60 max-w-xs">
+              Engineering the future of work with AI, automation, and enterprise-grade software.
             </p>
           </div>
-          
-          <div>
-            <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider text-zinc-900 dark:text-zinc-100">
-              Services
-            </h4>
-            <ul className="space-y-2 text-sm text-zinc-600 dark:text-zinc-400">
-              <li>Next.js Development</li>
-              <li>Backend Systems</li>
-              <li>Compliance Audits</li>
-              <li>Performance Tuning</li>
+          <div className="space-y-4">
+            <h4 className="text-sm font-bold tracking-wider text-brand-black uppercase">Services</h4>
+            <ul className="space-y-2 text-sm text-brand-black/60">
+              <li><Link href="/services/ai-integration">AI Integration</Link></li>
+              <li><Link href="/services/automation">Automation</Link></li>
+              <li><Link href="/services/development">Web Development</Link></li>
+              <li><Link href="/services/consulting">Consulting</Link></li>
             </ul>
           </div>
-
-          <div>
-            <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider text-zinc-900 dark:text-zinc-100">
-              Legal
-            </h4>
-            <ul className="space-y-2 text-sm text-zinc-600 dark:text-zinc-400">
-              <li><Link href="/legal/privacy">Privacy Policy</Link></li>
-              <li><Link href="/legal/terms">Terms of Service</Link></li>
-              <li><Link href="/legal/deletion">Right to Erasure</Link></li>
+          <div className="space-y-4">
+            <h4 className="text-sm font-bold tracking-wider text-brand-black uppercase">Company</h4>
+            <ul className="space-y-2 text-sm text-brand-black/60">
+              <li><Link href="/about">About Us</Link></li>
+              <li><Link href="/work">Selected Work</Link></li>
+              <li><Link href="/careers">Careers</Link></li>
+              <li><Link href="/contact">Contact</Link></li>
             </ul>
           </div>
-
-          <div className="flex flex-col gap-4">
-             <div className="flex items-center gap-2 rounded-lg border border-green-900/30 bg-green-900/10 px-4 py-2 text-green-700 dark:text-green-400">
-                <ShieldCheckIcon className="h-5 w-5" />
-                <span className="text-sm font-semibold">DPDP Compliant</span>
-             </div>
+          <div className="space-y-4">
+            <h4 className="text-sm font-bold tracking-wider text-brand-black uppercase">Connect</h4>
+            <div className="flex space-x-4">
+              <Link href="https://github.com" className="text-brand-black/60 hover:text-brand-primary transition-colors">
+                <Github className="h-5 w-5" />
+              </Link>
+              <Link href="https://twitter.com" className="text-brand-black/60 hover:text-brand-primary transition-colors">
+                <Twitter className="h-5 w-5" />
+              </Link>
+              <Link href="https://linkedin.com" className="text-brand-black/60 hover:text-brand-primary transition-colors">
+                <Linkedin className="h-5 w-5" />
+              </Link>
+            </div>
           </div>
         </div>
-        <div className="mt-12 border-t border-zinc-200 pt-8 text-center text-sm text-zinc-500 dark:border-zinc-800">
-          © {new Date().getFullYear()} Agency Platform. All rights reserved.
+        <div className="mt-12 border-t border-brand-black/5 pt-8 flex flex-col items-center justify-between gap-4 md:flex-row text-sm text-brand-black/40">
+          <p>© 2024 OddJobs Inc. All rights reserved.</p>
+          <div className="flex gap-4">
+            <Link href="/legal/privacy">Privacy Policy</Link>
+            <Link href="/legal/terms">Terms of Service</Link>
+          </div>
         </div>
       </div>
     </footer>
   );
 }
-
-function ShieldCheckIcon(props: any) {
-    return (
-      <svg
-        {...props}
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
-        <path d="m9 12 2 2 4-4" />
-      </svg>
-    )
-  }
