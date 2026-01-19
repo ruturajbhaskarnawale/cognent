@@ -1,24 +1,17 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Outfit } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
 
 export const metadata: Metadata = {
   title: {
-    default: "Agency Platform | High-Performance & Compliant",
-    template: "%s | Agency Platform"
+    default: "OddJobs | Enterprise AI & Technical Solutions",
+    template: "%s | OddJobs"
   },
-  description: "India's First High-Performance & DPDP-Compliant Web Agency. We build sales machines with Next.js and Python.",
-  keywords: ["Next.js", "FastAPI", "Web Agency", "India", "DPDP Compliance", "High Performance"],
-  openGraph: {
-    type: "website",
-    locale: "en_IN",
-    url: "https://agency-platform-demo.com",
-    title: "Agency Platform | Speed & Compliance",
-    description: "Building trust beacons and sales machines.",
-    siteName: "Agency Platform",
-  },
+  description: "Global leader in AI integration, automated tool building, and technical problem solving.",
+  keywords: ["AI Integration", "Automation", "Technical Consulting", "Web Development", "OddJobs"],
 };
 
 import { Navbar } from "@/components/layout/navbar";
@@ -32,9 +25,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${inter.variable} ${outfit.variable} font-sans antialiased text-brand-black bg-white`}>
         <Navbar />
-        <main className="pt-16 min-h-screen">
+        <main className="min-h-screen">
             {children}
         </main>
         <Footer />

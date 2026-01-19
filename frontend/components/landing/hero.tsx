@@ -8,6 +8,7 @@ import { TextReveal } from "@/components/animations/text-reveal";
 import { InteractiveGrid } from "@/components/landing/interactive-grid";
 import { TextRotator } from "@/components/animations/text-rotator";
 import { MagneticButton } from "@/components/animations/magnetic-button";
+import { CursorTrail } from "@/components/effects/cursor-trail";
 
 export function HeroSection() {
   const rotatingTexts = [
@@ -20,8 +21,11 @@ export function HeroSection() {
   return (
     <section className="relative w-full min-h-[90vh] flex items-center justify-center overflow-hidden">
       
-      {/* NEW: Interactive Background Grid */}
+      {/* Interactive Background Grid */}
       <InteractiveGrid />
+      
+      {/* Cursor Trail Effect - Only in Hero */}
+      <CursorTrail />
 
       <div className="container relative z-10 px-6 lg:px-12 mx-auto text-center">
         
