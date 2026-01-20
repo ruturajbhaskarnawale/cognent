@@ -1,8 +1,33 @@
+"""
+Seed Production Database Script
+
+This script connects to your Vercel Postgres database and seeds it with project data.
+Run this locally with your production DATABASE_URL.
+"""
+
+import os
 from sqlmodel import Session, select
-from app.database import engine
+from app.database import engine, init_db
 from app.models import Project
 
-def seed_projects():
+def seed_production():
+    """Seed the production database with project data."""
+    
+    # Verify we're using PostgreSQL
+    database_url = os.getenv("DATABASE_URL", "")
+    if not database_url.startswith("postgres"):
+        print("❌ ERROR: DATABASE_URL must be a PostgreSQL connection string")
+        print(f"Current DATABASE_URL: {database_url[:30]}...")
+        return
+    
+    print("🔗 Connecting to production database...")
+    print(f"Database: {database_url[:30]}...")
+    
+    # Initialize database (create tables if they don't exist)
+    print("📊 Initializing database tables...")
+    init_db()
+    
+    # Project data
     projects_data = [
         {
             "slug": "zenith-fitness",
@@ -55,22 +80,34 @@ def seed_projects():
             "is_published": True
         }
     ]
-
+    
+    print(f"\n🌱 Seeding {len(projects_data)} projects...")
+    
     with Session(engine) as session:
+        created_count = 0
+        skipped_count = 0
+        
         for p_data in projects_data:
-            # Check if exists (only if slug is provided)
-            if "slug" in p_data:
-                existing = session.exec(select(Project).where(Project.slug == p_data["slug"])).first()
-                if existing:
-                    print(f"Skipping existing project: {p_data['title']}")
-                    continue
+            # Check if exists
+            existing = session.exec(
+                select(Project).where(Project.slug == p_data["slug"])
+            ).first()
             
-            print(f"Creating project: {p_data['title']}")
-            project = Project(**p_data)
-            session.add(project)
+            if existing:
+                print(f"⏭️  Skipping existing: {p_data['title']}")
+                skipped_count += 1
+            else:
+                print(f"✅ Creating: {p_data['title']}")
+                project = Project(**p_data)
+                session.add(project)
+                created_count += 1
         
         session.commit()
-        print("Seeding complete!")
+        
+        print(f"\n🎉 Seeding complete!")
+        print(f"   Created: {created_count} projects")
+        print(f"   Skipped: {skipped_count} projects")
+        print(f"   Total: {created_count + skipped_count} projects in database")
 
 if __name__ == "__main__":
-    seed_projects()
+    seed_production()
