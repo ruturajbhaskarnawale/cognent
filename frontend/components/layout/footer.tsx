@@ -1,58 +1,163 @@
+"use client";
+
 import Link from "next/link";
-import { Github, Twitter, Linkedin } from "lucide-react";
+import { 
+  Github, 
+  Twitter, 
+  Linkedin, 
+  Mail, 
+  ArrowRight, 
+  Globe, 
+  Users, 
+  ShieldCheck,
+  Send
+} from "lucide-react";
+import { servicesData } from "@/lib/services-data";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { motion } from "framer-motion";
 
 export function Footer() {
+  const currentYear = new Date().getFullYear();
+
   return (
-    <footer className="w-full border-t border-brand-black/5 bg-white py-12 md:py-24 lg:py-32">
-      <div className="container px-4 md:px-6 mx-auto">
-        <div className="grid gap-8 lg:grid-cols-4">
-          <div className="space-y-4">
-            <Link href="/" className="flex items-center gap-2">
-              <div className="h-6 w-6 rounded-lg bg-gradient-to-br from-brand-primary to-brand-secondary" />
-              <span className="text-lg font-bold font-heading text-brand-black">OddJobs</span>
+    <footer className="w-full border-t border-brand-black/5 bg-white relative overflow-hidden pt-24 pb-12">
+      {/* Decorative Glows */}
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-brand-primary/5 rounded-full blur-[120px] -translate-x-1/2 translate-y-1/2 pointer-events-none" />
+      
+      <div className="container px-6 md:px-12 mx-auto relative z-10">
+        <div className="grid gap-16 lg:grid-cols-12 mb-20">
+          {/* Column 1: Brand & Vision */}
+          <div className="lg:col-span-4 space-y-8">
+            <Link href="/" className="flex items-center gap-3 group">
+              <div className="h-12 w-12 rounded-xl bg-white p-1.5 shadow-md flex items-center justify-center overflow-hidden">
+                <img 
+                  src="/logo/logo1.png" 
+                  alt="OddJobs Logo" 
+                  className="w-full h-full object-contain mix-blend-multiply transition-transform group-hover:scale-110 duration-500" 
+                />
+              </div>
+              <span className="text-2xl font-bold font-heading text-brand-black tracking-tight">OddJobs</span>
             </Link>
-            <p className="text-sm text-brand-black/60 max-w-xs">
-              Engineering the future of work with AI, automation, and enterprise-grade software.
+            <p className="text-lg text-brand-black/60 leading-relaxed max-w-sm font-light">
+              Engineering the future of enterprise work with bespoke AI, automation, and world-class software architecture.
             </p>
+            <div className="flex space-x-5">
+              {[
+                { icon: Github, href: "https://github.com" },
+                { icon: Twitter, href: "https://twitter.com" },
+                { icon: Linkedin, href: "https://linkedin.com" },
+                { icon: Mail, href: "mailto:hello@oddjobs.com" }
+              ].map((social, i) => (
+                <motion.a 
+                  key={i}
+                  whileHover={{ y: -5, scale: 1.1 }}
+                  href={social.href} 
+                  className="w-10 h-10 rounded-full border border-brand-black/10 flex items-center justify-center text-brand-black/60 hover:border-brand-primary hover:text-brand-primary transition-all duration-300 shadow-sm hover:shadow-lg"
+                >
+                  <social.icon className="h-5 w-5" />
+                </motion.a>
+              ))}
+            </div>
           </div>
-          <div className="space-y-4">
-            <h4 className="text-sm font-bold tracking-wider text-brand-black uppercase">Services</h4>
-            <ul className="space-y-2 text-sm text-brand-black/60">
-              <li><Link href="/services/ai-integration">AI Integration</Link></li>
-              <li><Link href="/services/automation">Automation</Link></li>
-              <li><Link href="/services/development">Web Development</Link></li>
-              <li><Link href="/services/consulting">Consulting</Link></li>
+
+          {/* Column 2: Services */}
+          <div className="lg:col-span-2 space-y-6">
+            <h4 className="text-sm font-bold tracking-widest text-brand-black uppercase opacity-40">Expertise</h4>
+            <ul className="space-y-4">
+              {Object.values(servicesData).map((service) => (
+                <li key={service.slug}>
+                  <Link 
+                    href={`/services/${service.slug}`} 
+                    className="text-brand-black/60 hover:text-brand-primary transition-all duration-300 font-medium flex items-center group"
+                  >
+                    <ArrowRight className="w-0 h-3 group-hover:w-3 mr-0 group-hover:mr-2 opacity-0 group-hover:opacity-100 transition-all duration-300" />
+                    {service.title.split(' ')[0]} {service.title.split(' ')[1] || ''}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
-          <div className="space-y-4">
-            <h4 className="text-sm font-bold tracking-wider text-brand-black uppercase">Company</h4>
-            <ul className="space-y-2 text-sm text-brand-black/60">
-              <li><Link href="/about">About Us</Link></li>
-              <li><Link href="/work">Selected Work</Link></li>
-              <li><Link href="/careers">Careers</Link></li>
-              <li><Link href="/contact">Contact</Link></li>
+
+          {/* Column 3: Company & Resources */}
+          <div className="lg:col-span-2 space-y-6">
+            <h4 className="text-sm font-bold tracking-widest text-brand-black uppercase opacity-40">Company</h4>
+            <ul className="space-y-4">
+              {[
+                { name: "Selected Work", href: "/work" },
+                { name: "Our Process", href: "/#process" },
+                { name: "Client Stories", href: "/#testimonials" },
+                { name: "Careers", href: "/careers" },
+                { name: "Contact", href: "/contact" }
+              ].map((link) => (
+                <li key={link.name}>
+                  <Link 
+                    href={link.href} 
+                    className="text-brand-black/60 hover:text-brand-primary transition-all duration-300 font-medium"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
-          <div className="space-y-4">
-            <h4 className="text-sm font-bold tracking-wider text-brand-black uppercase">Connect</h4>
-            <div className="flex space-x-4">
-              <Link href="https://github.com" className="text-brand-black/60 hover:text-brand-primary transition-colors">
-                <Github className="h-5 w-5" />
-              </Link>
-              <Link href="https://twitter.com" className="text-brand-black/60 hover:text-brand-primary transition-colors">
-                <Twitter className="h-5 w-5" />
-              </Link>
-              <Link href="https://linkedin.com" className="text-brand-black/60 hover:text-brand-primary transition-colors">
-                <Linkedin className="h-5 w-5" />
-              </Link>
+
+          {/* Column 4: Newsletter/CTA */}
+          <div className="lg:col-span-4 space-y-8 p-8 rounded-[2.5rem] bg-brand-primary/[0.03] border border-brand-primary/10 relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-brand-primary/10 blur-3xl -translate-y-1/2 translate-x-1/2" />
+            
+            <div className="space-y-4 relative z-10">
+              <h4 className="text-2xl font-bold text-brand-black tracking-tight leading-tight">
+                Join the engineering edge.
+              </h4>
+              <p className="text-sm text-brand-black/60 leading-relaxed">
+                Receive quarterly insights into high-performance engineering and AI automation. No fluff, just code.
+              </p>
+            </div>
+            
+            <div className="flex gap-2 relative z-10">
+              <Input 
+                placeholder="engineering@company.com" 
+                className="rounded-full h-12 bg-white border-brand-black/10 focus:ring-brand-primary/20"
+              />
+              <Button size="icon" className="rounded-full h-12 w-12 bg-brand-primary text-white hover:bg-brand-secondary shadow-lg hover:shadow-brand-primary/25 transition-all">
+                <Send className="w-5 h-5" />
+              </Button>
+            </div>
+
+            <div className="flex items-center gap-6 pt-4 relative z-10">
+              <div className="flex items-center gap-2 text-xs text-brand-black/40">
+                <ShieldCheck className="w-4 h-4 text-brand-primary" />
+                GDPR Compliant
+              </div>
+              <div className="flex items-center gap-2 text-xs text-brand-black/40">
+                <Users className="w-4 h-4 text-brand-primary" />
+                Trusted by 50+ Leaders
+              </div>
             </div>
           </div>
         </div>
-        <div className="mt-12 border-t border-brand-black/5 pt-8 flex flex-col items-center justify-between gap-4 md:flex-row text-sm text-brand-black/40">
-          <p>© 2024 OddJobs Inc. All rights reserved.</p>
-          <div className="flex gap-4">
-            <Link href="/legal/privacy">Privacy Policy</Link>
-            <Link href="/legal/terms">Terms of Service</Link>
+
+        {/* Bottom Bar */}
+        <div className="pt-12 border-t border-brand-black/5 flex flex-col items-center justify-between gap-8 md:flex-row text-sm">
+          <div className="flex items-center gap-6 order-2 md:order-1">
+            <p className="text-brand-black/40 font-medium">© {currentYear} OddJobs Engineering Inc.</p>
+            <div className="hidden md:flex gap-4">
+              <Link href="/legal/privacy" className="text-brand-black/40 hover:text-brand-black transition-colors">Privacy</Link>
+              <Link href="/legal/terms" className="text-brand-black/40 hover:text-brand-black transition-colors">Terms</Link>
+            </div>
+          </div>
+          
+          <div className="flex items-center gap-3 order-1 md:order-2">
+            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-brand-primary/5 border border-brand-primary/10 text-brand-primary font-bold text-xs uppercase tracking-widest">
+              <div className="w-2 h-2 rounded-full bg-brand-primary animate-pulse" />
+              Systems Operational
+            </div>
+            <Link href="/#faq">
+              <Button variant="ghost" className="rounded-full px-6 h-10 text-brand-black/60 font-bold hover:bg-brand-black/5">
+                Support Hub
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

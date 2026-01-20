@@ -87,7 +87,7 @@ export default function DevelopmentPage() {
           {
             title: "Real-time Applications",
             description: "Build collaborative tools, chat apps, and dashboards with WebSockets and real-time data sync.",
-            icon: Zap,
+            icon: "Zap",
             color: "bg-gradient-to-br from-pink-500 to-rose-600"
           },
           {
@@ -108,7 +108,7 @@ export default function DevelopmentPage() {
             number: "01",
             title: "Requirements & Design",
             description: "Gather requirements, create wireframes, design UI/UX, and plan the technical architecture.",
-            icon: Compass
+            icon: "Compass"
           },
           {
             number: "02",
@@ -126,7 +126,7 @@ export default function DevelopmentPage() {
             number: "04",
             title: "Deployment & Launch",
             description: "Deploy to production with CI/CD pipelines, monitoring, and rollback capabilities.",
-            icon: Zap
+            icon: "Zap"
           },
           {
             number: "05",
@@ -216,7 +216,7 @@ export default function DevelopmentPage() {
           {
             title: "Fast Development",
             description: "Agile process with 2-week sprints delivers working software quickly.",
-            icon: Zap,
+            icon: "Zap",
             metric: "2 weeks"
           },
           {
@@ -280,7 +280,7 @@ export default function DevelopmentPage() {
           {
             title: "System Optimization",
             description: "Enhance performance, security, and reliability of existing apps.",
-            icon: Zap,
+            icon: "Zap",
             href: "/services/optimization",
             color: "bg-gradient-to-br from-lime-500 to-green-600"
           }

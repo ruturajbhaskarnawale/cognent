@@ -35,13 +35,11 @@ def seed_projects():
             "is_published": True
         },
         {
-            "slug": "eco-market",
-            "client_name": "EcoMarket",
             "title": "Sustainable E-commerce",
             "challenge": "Building a carbon-neutral marketplace that handles high traffic spikes during eco-awareness campaigns.",
             "tech_stack": ["Shopify Hydrogen", "Sanity CMS", "Vercel"],
             "roi_metrics": "150% YoY growth. Carbon neutral certification achieved.",
-            "thumbnail_url": "https://images.unsplash.com/photo-1542601906990-b4d3fb7d5b73?q=80&w=1470&auto=format&fit=crop",
+            "thumbnail_url": "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?q=80&w=2070&auto=format&fit=crop",
             "is_published": True
         }
     ]

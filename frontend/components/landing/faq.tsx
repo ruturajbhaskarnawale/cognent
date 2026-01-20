@@ -2,68 +2,130 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown } from "lucide-react";
+import { Plus, Minus, HelpCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { ScrollReveal } from "@/components/animations/scroll-reveal";
+import { CursorTrail } from "@/components/effects/cursor-trail";
 
 const faqs = [
   {
-    question: "How long does a typical project take?",
-    answer: "Project timelines vary depending on complexity. A standard website typically takes 4-6 weeks, while more complex web applications can take 3-6 months.",
+    question: "What is your typical project timeline?",
+    answer: "Timelines depend on complexity. Most engineering projects range from 4-8 weeks for focused solutions to 4-6 months for full-scale enterprise platforms.",
   },
   {
-    question: "Do you offer post-launch support?",
-    answer: "Yes, we offer comprehensive maintenance and support packages to ensure your digital product remains secure, up-to-date, and performing optimally.",
+    question: "How do you handle legacy system integration?",
+    answer: "We specialize in 'digital surgery'—gradually refactoring legacy monoliths into modern, scalable microservices without interrupting your business operations.",
   },
   {
-    question: "What technologies do you specialize in?",
-    answer: "We specialize in modern web stack technologies including React, Next.js, Node.js, Python/FastAPI, and cloud infrastructure on AWS/Vercel.",
+    question: "Do you provide dedicated post-launch engineering?",
+    answer: "Absolutely. We offer premium support tiers that include proactive monitoring, security hardening, and continuous performance optimization for your scale.",
   },
   {
-    question: "Can you help with rebranding?",
-    answer: "Absolutely. Our design team is experienced in creating complete brand identities, from logo design to design systems and voice/tone guidelines.",
+    question: "What is your core technology stack?",
+    answer: "We are experts in the modern high-performance stack: Next.js/React, TypeScript, Go/Rust for performance critical parts, and robust cloud infra on AWS/GCP.",
+  },
+  {
+    question: "Can you help as an external R&D team?",
+    answer: "Yes, we often act as an extension of your internal team, tackling high-complexity R&D challenges that require specialized engineering expertise.",
   },
 ];
 
 export function FAQ() {
   return (
-    <section className="py-24">
-      <div className="container mx-auto px-4 md:px-6 max-w-3xl">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Frequently Asked Questions</h2>
-        </div>
-        <div className="space-y-4">
-          {faqs.map((faq, index) => (
-            <FAQItem key={index} question={faq.question} answer={faq.answer} />
-          ))}
+    <section className="py-32 bg-white relative overflow-hidden">
+      {/* Cursor Trail Effect */}
+      <CursorTrail />
+
+      {/* Decorative Glows */}
+      <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-brand-primary/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-brand-secondary/5 rounded-full blur-[120px] pointer-events-none" />
+
+      <div className="container mx-auto px-6 lg:px-12 relative z-10">
+        <div className="flex flex-col lg:flex-row gap-16 lg:gap-32">
+          {/* Left Side: Header (Sticky on Desktop) */}
+          <div className="w-full lg:w-1/3 lg:sticky lg:top-32 self-start">
+            <ScrollReveal width="100%" direction="left">
+              <motion.span 
+                initial={{ opacity: 0, x: -10 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                className="px-4 py-1.5 rounded-full bg-brand-black/5 text-brand-black/60 font-medium text-sm mb-6 inline-block"
+              >
+                Information
+              </motion.span>
+              <h2 className="text-4xl md:text-6xl font-bold font-heading text-brand-black mb-8 tracking-tight leading-tight">
+                Common <br /> <span className="text-brand-primary">Inquiries.</span>
+              </h2>
+              <p className="text-xl text-brand-black/60 font-light leading-relaxed mb-10">
+                Transparent answers to clarify our engineering process, technology choices, and project delivery.
+              </p>
+              
+              <div className="hidden lg:flex items-center gap-4 text-brand-primary font-bold group cursor-pointer">
+                <div className="w-12 h-12 rounded-full border border-brand-primary/20 flex items-center justify-center group-hover:bg-brand-primary group-hover:text-white transition-all duration-300">
+                  <HelpCircle className="w-5 h-5" />
+                </div>
+                <span>Need more clarity? Contact us.</span>
+              </div>
+            </ScrollReveal>
+          </div>
+
+          {/* Right Side: Accordion */}
+          <div className="w-full lg:w-2/3 space-y-4">
+            {faqs.map((faq, index) => (
+              <ScrollReveal 
+                key={index} 
+                width="100%" 
+                direction="up" 
+                delay={index * 0.1}
+              >
+                <FAQItem question={faq.question} answer={faq.answer} index={index} />
+              </ScrollReveal>
+            ))}
+          </div>
         </div>
       </div>
     </section>
   );
 }
 
-function FAQItem({ question, answer }: { question: string; answer: string }) {
+function FAQItem({ question, answer, index }: { question: string; answer: string, index: number }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden">
+    <div 
+      className={cn(
+        "group border rounded-[2rem] transition-all duration-500 overflow-hidden",
+        isOpen 
+          ? "border-brand-primary/30 bg-brand-primary/[0.02] shadow-xl shadow-brand-primary/5" 
+          : "border-brand-black/5 bg-white hover:border-brand-black/20 hover:shadow-lg hover:shadow-brand-black/5"
+      )}
+    >
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex w-full items-center justify-between p-4 text-left font-medium transition-all hover:bg-zinc-50 dark:hover:bg-zinc-900"
+        className="flex w-full items-center justify-between p-8 md:p-10 text-left transition-all"
       >
-        <span>{question}</span>
-        <ChevronDown
-          className={cn("h-4 w-4 transition-transform duration-200", isOpen && "rotate-180")}
-        />
+        <span className={cn(
+          "text-xl md:text-2xl font-bold tracking-tight transition-colors duration-300",
+          isOpen ? "text-brand-primary" : "text-brand-black"
+        )}>
+          {question}
+        </span>
+        <div className={cn(
+          "shrink-0 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-500",
+          isOpen ? "bg-brand-primary text-white rotate-180" : "bg-brand-black/5 text-brand-black"
+        )}>
+          {isOpen ? <Minus className="h-5 w-5" /> : <Plus className="h-5 w-5" />}
+        </div>
       </button>
+
       <AnimatePresence initial={false}>
         {isOpen && (
           <motion.div
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
+            transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
           >
-            <div className="p-4 pt-0 text-zinc-500 dark:text-zinc-400">
+            <div className="px-10 pb-10 text-xl font-light text-brand-black/60 leading-relaxed border-t border-brand-primary/10 pt-8">
               {answer}
             </div>
           </motion.div>

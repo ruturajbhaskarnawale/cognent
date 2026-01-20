@@ -219,7 +219,7 @@ export default function OptimizationPage() {
           {
             title: "Higher Conversions",
             description: "Faster sites convert better—every second of improvement increases conversions.",
-            icon: TrendingUp,
+            icon: "TrendingUp",
             metric: "25%"
           }
         ]}
