@@ -49,12 +49,13 @@ const navItems = [
     href: "/work",
     dropdown: [
       { name: "All Projects", description: "Vew our complete portfolio of engineering excellence.", href: "/work", icon: LayoutGrid },
-      { name: "Enterprise Solutions", description: "Custom platforms built for global scale.", href: "/work?category=enterprise", icon: Globe },
-      { name: "Startup Launchpad", description: "MVPs and rapid scaling for tomorrow's unicorns.", href: "/work?category=startup", icon: Zap },
+      { name: "Enterprise Solutions", description: "Custom platforms built for global scale.", href: "/work/enterprise", icon: Globe },
+      { name: "Startup Launchpad", description: "MVPs and rapid scaling for tomorrow's unicorns.", href: "/work/startup", icon: Zap },
     ]
   },
   { name: "Capabilities", href: "/#capabilities" },
   { name: "Process", href: "/#process" },
+  { name: "Get Estimate", href: "/estimate" },
 ];
 
 export function Navbar() {
