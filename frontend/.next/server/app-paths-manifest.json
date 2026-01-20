@@ -1,8 +1,8 @@
 {
-  "/_not-found/page": "app/_not-found/page.js",
-  "/page": "app/page.js",
-  "/work/[slug]/page": "app/work/[slug]/page.js",
-  "/work/page": "app/work/page.js",
-  "/contact/page": "app/contact/page.js",
-  "/services/consulting/page": "app/services/consulting/page.js"
+  "/services/ai-integration/page": "app/services/ai-integration/page.js",
+  "/services/automation/page": "app/services/automation/page.js",
+  "/services/debugging/page": "app/services/debugging/page.js",
+  "/services/consulting/page": "app/services/consulting/page.js",
+  "/services/development/page": "app/services/development/page.js",
+  "/page": "app/page.js"
 }

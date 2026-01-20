@@ -181,7 +181,7 @@ export function ServiceDeepDive() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   return (
-    <section ref={containerRef} className="py-32 bg-white relative overflow-hidden">
+    <section id="capabilities" ref={containerRef} className="py-32 bg-white relative overflow-hidden">
       {/* Cursor Trail Effect */}
       <CursorTrail />
 

@@ -54,7 +54,7 @@ export function ProcessFlow() {
   });
 
   return (
-    <section ref={containerRef} className="py-32 bg-white relative overflow-hidden">
+    <section id="process" ref={containerRef} className="py-32 bg-white relative overflow-hidden">
       {/* Cursor Trail Effect */}
       <CursorTrail />
 

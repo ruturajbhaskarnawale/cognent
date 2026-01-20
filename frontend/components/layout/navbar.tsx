@@ -53,6 +53,7 @@ const navItems = [
       { name: "Startup Launchpad", description: "MVPs and rapid scaling for tomorrow's unicorns.", href: "/work?category=startup", icon: Zap },
     ]
   },
+  { name: "Capabilities", href: "/#capabilities" },
   { name: "Process", href: "/#process" },
 ];
 
