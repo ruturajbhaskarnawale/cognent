@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { API_URL } from "@/lib/api";
 
 export function ConsentManager() {
   const [show, setShow] = useState(false);
@@ -21,7 +22,7 @@ export function ConsentManager() {
     
     // Log to backend
     try {
-        await fetch("http://127.0.0.1:8000/api/v1/compliance/consent", {
+        await fetch(`${API_URL}/api/v1/compliance/consent`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useQuoteStore } from "@/store/useQuoteStore";
 import { Button } from "@/components/ui/button";
+import { API_URL } from "@/lib/api";
 
 export function StepEmail() {
   const { email, setEmail, services, timeline } = useQuoteStore();
@@ -12,7 +13,7 @@ export function StepEmail() {
   const handleSubmit = async () => {
     setLoading(true);
     try {
-      const res = await fetch("http://127.0.0.1:8000/api/v1/leads/calculate", {
+      const res = await fetch(`${API_URL}/api/v1/leads/calculate`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

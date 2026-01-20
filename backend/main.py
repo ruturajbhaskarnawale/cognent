@@ -19,7 +19,11 @@ app = FastAPI(
 # CORS configuration
 origins = [
     "http://localhost:3000",
-    "http://127.0.0.1:3000"
+    "http://127.0.0.1:3000",
+    # Add your production frontend URL after deployment
+    # Example: "https://oddjobs.vercel.app",
+    # Wildcard for Vercel preview deployments
+    "https://*.vercel.app",
 ]
 
 app.add_middleware(
