@@ -70,21 +70,7 @@ export function ServiceHero({ title, description, icon, gradient, iconColor }: S
         />
         <div className="absolute inset-0 bg-white/20 backdrop-blur-[2px]" />
       </div>
-
       <div className="container mx-auto px-6 lg:px-12 relative z-10 pt-20">
-        {/* Superior Navigation Hook */}
-        <div className="absolute top-10 left-6 lg:left-12">
-            <MagneticButton>
-                <Link 
-                    href="/services" 
-                    className="flex items-center gap-3 px-6 py-3 rounded-full bg-brand-black/5 border border-brand-black/5 backdrop-blur-xl text-brand-black/60 hover:text-brand-black hover:bg-brand-black/10 transition-all group"
-                >
-                    <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-                    <span className="text-xs font-bold tracking-widest uppercase">Archive</span>
-                </Link>
-            </MagneticButton>
-        </div>
-
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
           <div className="space-y-12">
             <ScrollReveal>

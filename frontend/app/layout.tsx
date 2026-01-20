@@ -12,6 +12,11 @@ export const metadata: Metadata = {
   },
   description: "Global leader in AI integration, automated tool building, and technical problem solving.",
   keywords: ["AI Integration", "Automation", "Technical Consulting", "Web Development", "OddJobs"],
+  icons: {
+    icon: '/logo/logo1.png',
+    shortcut: '/logo/logo1.png',
+    apple: '/logo/logo1.png',
+  },
 };
 
 import { Navbar } from "@/components/layout/navbar";
