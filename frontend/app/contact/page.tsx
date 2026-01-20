@@ -23,7 +23,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h3 className="font-semibold">Email</h3>
-                  <p className="text-zinc-500">hello@agency.com</p>
+                  <p className="text-zinc-500">oddjobs1824@gmail.com</p>
                 </div>
               </div>
               
@@ -33,7 +33,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h3 className="font-semibold">Phone</h3>
-                  <p className="text-zinc-500">+1 (555) 000-0000</p>
+                  <p className="text-zinc-500">+91 9833097874 / +91 9372904186</p>
                 </div>
               </div>
 
@@ -43,7 +43,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h3 className="font-semibold">Office</h3>
-                  <p className="text-zinc-500">123 Innovation Dr, Tech City, TC 90210</p>
+                  <p className="text-zinc-500">Mohan Palms, Shirgav, Badlapur East, 421503</p>
                 </div>
               </div>
             </div>

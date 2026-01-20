@@ -1,8 +1,9 @@
 {
   "/page": "app/page.js",
-  "/estimate/page": "app/estimate/page.js",
+  "/services/page": "app/services/page.js",
   "/contact/page": "app/contact/page.js",
   "/work/startup/page": "app/work/startup/page.js",
-  "/work/page": "app/work/page.js",
-  "/services/debugging/page": "app/services/debugging/page.js"
+  "/services/debugging/page": "app/services/debugging/page.js",
+  "/services/optimization/page": "app/services/optimization/page.js",
+  "/estimate/page": "app/estimate/page.js"
 }
