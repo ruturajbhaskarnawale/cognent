@@ -7,7 +7,12 @@ from app.api.v1 import leads, compliance, projects
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    init_db()
+    # Initialize database tables (safe to call multiple times)
+    try:
+        init_db()
+    except Exception as e:
+        print(f"Warning: Database initialization failed: {e}")
+        # Continue anyway - tables might already exist
     yield
 
 app = FastAPI(
@@ -20,15 +25,15 @@ app = FastAPI(
 origins = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
-    # Add your production frontend URL after deployment
-    # Example: "https://oddjobs.vercel.app",
-    # Wildcard for Vercel preview deployments
-    "https://*.vercel.app",
 ]
+
+# Allow all Vercel deployments using regex
+allow_origin_regex = r"https://.*\.vercel\.app"
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
+    allow_origin_regex=allow_origin_regex,  # Support all Vercel deployments
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
