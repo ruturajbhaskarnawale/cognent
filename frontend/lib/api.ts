@@ -8,8 +8,8 @@ export async function getProjects(): Promise<Project[]> {
             cache: "no-store", // Ensure fresh data
         });
         if (!res.ok) {
-            // Fallback for demo if API is down or empty
-            console.error("Failed to fetch projects");
+            console.error(`Failed to fetch projects from: ${API_URL}/api/v1/projects`);
+            console.error(`Status: ${res.status} ${res.statusText}`);
             return [];
         }
         return res.json();

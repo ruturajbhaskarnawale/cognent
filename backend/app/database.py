@@ -6,11 +6,15 @@ import os
 # Check for multiple possible environment variable names used by Vercel Postgres
 DATABASE_URL = os.getenv("DATABASE_URL") or os.getenv("POSTGRES_URL") or os.getenv("POSTGRES_PRISMA_URL") or "sqlite:///./agency.db"
 
+# SQLAlchemy 1.4+ requires postgresql:// instead of postgres://
+if DATABASE_URL.startswith("postgres://"):
+    DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
+
 # Disable echo in production to reduce logs
 is_production = os.getenv("VERCEL_ENV") == "production"
 
 # Create engine with appropriate settings
-if DATABASE_URL.startswith("postgres"):
+if DATABASE_URL.startswith("postgresql"):
     # PostgreSQL configuration for Vercel
     engine = create_engine(
         DATABASE_URL,
