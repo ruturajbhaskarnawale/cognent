@@ -1,29 +1,22 @@
-"""Quick script to verify database schema"""
-from sqlmodel import Session, select, text
+from sqlalchemy import inspect
 from app.database import engine
-from app.models import Project
 
 print("Verifying database schema...")
 
-with Session(engine) as session:
-    # Get table info
-    result = session.exec(text("PRAGMA table_info(project)"))
-    columns = result.fetchall()
-    
-    print("\nProject table columns:")
-    for col in columns:
-        print(f"  - {col[1]} ({col[2]})")
-    
-    # Count projects
-    count = session.exec(select(Project)).all()
-    print(f"\nTotal projects in database: {len(count)}")
-    
-    if count:
-        print("\nSample project:")
-        proj = count[0]
-        print(f"  Title: {proj.title}")
-        print(f"  Has description field: {hasattr(proj, 'description')}")
-        print(f"  Has scheduled_publish_at field: {hasattr(proj, 'scheduled_publish_at')}")
-        print(f"  Has updated_at field: {hasattr(proj, 'updated_at')}")
+inspector = inspect(engine)
+columns = inspector.get_columns('project')
+
+print("\nProject table columns:")
+for col in columns:
+    print(f"  - {col['name']} ({col['type']})")
+
+# Check for specific expected fields
+column_names = [col['name'] for col in columns]
+expected = ['description', 'scheduled_publish_at', 'updated_at']
+
+print("\nMigration Check:")
+for field in expected:
+    status = "✅ Found" if field in column_names else "❌ Missing"
+    print(f"  - {field}: {status}")
 
 print("\n✅ Schema verification complete!")
