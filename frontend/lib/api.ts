@@ -108,7 +108,7 @@ export interface ProjectCreateData {
 
 
 export async function createProject(projectData: ProjectCreateData, token: string): Promise<Project> {
-    const res = await fetch(`${API_URL}/api/v1/projects/`, {
+    const res = await fetch(`${API_URL}/api/v1/projects`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

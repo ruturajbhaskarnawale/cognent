@@ -49,7 +49,7 @@ def get_project_by_slug(slug: str, session: Session = Depends(get_session)):
         raise HTTPException(status_code=404, detail="Project not found")
     return project
 
-@router.post("/", response_model=Project, status_code=201)
+@router.post("", response_model=Project, status_code=201)
 def create_project(
     project_data: ProjectCreate, 
     session: Session = Depends(get_session),

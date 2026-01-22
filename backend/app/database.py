@@ -3,7 +3,8 @@ from typing import Generator
 import os
 
 # Use SQLite for local development by default, or Postgres if available
-DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./agency.db")
+# Check for multiple possible environment variable names used by Vercel Postgres
+DATABASE_URL = os.getenv("DATABASE_URL") or os.getenv("POSTGRES_URL") or os.getenv("POSTGRES_PRISMA_URL") or "sqlite:///./agency.db"
 
 # Disable echo in production to reduce logs
 is_production = os.getenv("VERCEL_ENV") == "production"
