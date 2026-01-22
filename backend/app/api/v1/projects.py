@@ -23,7 +23,7 @@ class ProjectCreate(BaseModel):
     is_published: bool = True
     scheduled_publish_at: str | None = None  # ISO format datetime string
 
-@router.get("/", response_model=List[Project])
+@router.get("", response_model=List[Project])
 def get_projects(session: Session = Depends(get_session)):
     projects = session.exec(select(Project).where(Project.is_published == True)).all()
     return projects
