@@ -9,6 +9,7 @@ import { Project } from "@/lib/types";
 import { Button } from "@/components/ui/button";
 import { ScrollReveal } from "@/components/animations/scroll-reveal";
 import { CursorTrail } from "@/components/effects/cursor-trail";
+import { MagneticButton } from "@/components/animations/magnetic-button";
 
 interface SelectedWorkProps {
   projects: Project[];
@@ -182,12 +183,18 @@ export function SelectedWork({ projects }: SelectedWorkProps) {
           </ScrollReveal>
 
           <ScrollReveal width="fit-content">
-            <Link href="/work" className="group">
-              <Button variant="outline" className="rounded-full px-10 h-14 border-brand-black/10 hover:border-brand-primary/30 hover:bg-brand-primary/5 text-brand-black font-bold group">
-                Deep Dive Into All Work
-                <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
-            </Link>
+            <MagneticButton>
+              <Link href="/work" className="group">
+                <Button size="lg" className="relative group overflow-hidden rounded-full bg-brand-black text-white px-10 h-14 text-lg font-bold shadow-2xl hover:bg-brand-primary transition-all duration-500 border-none">
+                  <span className="relative z-10 flex items-center gap-2">
+                    Deep Dive Into All Work
+                    <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  </span>
+                  {/* Pulsing Glow */}
+                  <div className="absolute inset-0 bg-brand-primary opacity-0 group-hover:opacity-20 blur-2xl transition-opacity duration-500" />
+                </Button>
+              </Link>
+            </MagneticButton>
           </ScrollReveal>
         </div>
       </div>

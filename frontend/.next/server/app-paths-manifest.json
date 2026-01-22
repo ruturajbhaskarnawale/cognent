@@ -1,1 +1,20 @@
-{}
+{
+  "/_not-found/page": "app/_not-found/page.js",
+  "/contact/page": "app/contact/page.js",
+  "/legal/privacy/page": "app/legal/privacy/page.js",
+  "/estimate/page": "app/estimate/page.js",
+  "/page": "app/page.js",
+  "/icon.png/route": "app/icon.png/route.js",
+  "/legal/terms/page": "app/legal/terms/page.js",
+  "/work/[slug]/page": "app/work/[slug]/page.js",
+  "/work/page": "app/work/page.js",
+  "/services/page": "app/services/page.js",
+  "/services/ai-integration/page": "app/services/ai-integration/page.js",
+  "/services/debugging/page": "app/services/debugging/page.js",
+  "/services/automation/page": "app/services/automation/page.js",
+  "/services/development/page": "app/services/development/page.js",
+  "/services/consulting/page": "app/services/consulting/page.js",
+  "/services/optimization/page": "app/services/optimization/page.js",
+  "/work/startup/page": "app/work/startup/page.js",
+  "/work/enterprise/page": "app/work/enterprise/page.js"
+}

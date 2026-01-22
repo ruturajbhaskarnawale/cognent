@@ -2,16 +2,21 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { getProjects } from "@/lib/api";
+import { getProjects, getAllProjects, createProject, updateProject, deleteProject, togglePublish, ProjectCreateData } from "@/lib/api";
 import { Project } from "@/lib/types";
 import { WorkHero } from "@/components/work/work-hero";
 import { CursorTrail } from "@/components/effects/cursor-trail";
 import { ScrollReveal } from "@/components/animations/scroll-reveal";
 import { SpotlightCard } from "@/components/animations/spotlight-card";
 import { Button } from "@/components/ui/button";
+import { AdminLogin } from "@/components/admin/admin-login";
+import { AdminPanel } from "@/components/admin/admin-panel";
+import { ProjectForm } from "@/components/admin/project-form";
+import { DraftPreview } from "@/components/admin/draft-preview";
+import { useAdminAuth } from "@/hooks/use-admin-auth";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Filter, ExternalLink, Zap, Globe, Target } from "lucide-react";
+import { ArrowRight, Filter, ExternalLink, Zap, Globe, Target, Shield } from "lucide-react";
 
 export default function WorkPage() {
   const [projects, setProjects] = useState<Project[]>([]);
@@ -19,17 +24,44 @@ export default function WorkPage() {
   const [activeCategory, setActiveCategory] = useState("All");
   const [isLoading, setIsLoading] = useState(true);
 
+  // Admin state
+  const { isAuthenticated, isLoading: authLoading, login, logout, getToken } = useAdminAuth();
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const [showAdminPanel, setShowAdminPanel] = useState(false);
+  const [showProjectForm, setShowProjectForm] = useState(false);
+  const [showDraftPreview, setShowDraftPreview] = useState(false);
+  const [editingProject, setEditingProject] = useState<Project | null>(null);
+  const [previewProject, setPreviewProject] = useState<Project | null>(null);
+  const [allProjects, setAllProjects] = useState<Project[]>([]); // Includes drafts for admin
+
   const categories = ["All", "Enterprise", "Startup", "AI & Automation"];
 
-  useEffect(() => {
-    async function loadProjects() {
-      const data = await getProjects();
-      setProjects(data);
-      setFilteredProjects(data);
-      setIsLoading(false);
+  const loadProjects = async () => {
+    const data = await getProjects();
+    setProjects(data);
+    setFilteredProjects(data);
+    setIsLoading(false);
+    
+    // Load all projects (including drafts) if admin is authenticated
+    if (isAuthenticated) {
+      const token = getToken();
+      if (token) {
+        const allData = await getAllProjects(token);
+        setAllProjects(allData);
+      }
     }
+  };
+
+  useEffect(() => {
     loadProjects();
   }, []);
+
+  // Reload projects when admin auth state changes
+  useEffect(() => {
+    if (isAuthenticated) {
+      loadProjects();
+    }
+  }, [isAuthenticated]);
 
   useEffect(() => {
     if (activeCategory === "All") {
@@ -46,6 +78,65 @@ export default function WorkPage() {
         ));
     }
   }, [activeCategory, projects]);
+
+  // Admin handlers
+  const handleAdminButtonClick = () => {
+    if (isAuthenticated) {
+      setShowAdminPanel(true);
+    } else {
+      setShowLoginModal(true);
+    }
+  };
+
+  const handleAddProject = () => {
+    setEditingProject(null);
+    setShowProjectForm(true);
+  };
+
+  const handleEditProject = (project: Project) => {
+    setEditingProject(project);
+    setShowProjectForm(true);
+  };
+
+  const handleProjectSubmit = async (data: ProjectCreateData) => {
+    const token = getToken();
+    if (!token) return;
+
+    try {
+      if (editingProject) {
+        await updateProject(editingProject.id, data, token);
+      } else {
+        await createProject(data, token);
+      }
+      await loadProjects();
+      setShowProjectForm(false);
+      setEditingProject(null);
+    } catch (error) {
+      console.error("Project submit error:", error);
+      throw error;
+    }
+  };
+
+  const handleDeleteProject = async (projectId: string) => {
+    const token = getToken();
+    if (!token) return;
+
+    await deleteProject(projectId, token);
+    await loadProjects();
+  };
+
+  const handleTogglePublish = async (projectId: string) => {
+    const token = getToken();
+    if (!token) return;
+
+    await togglePublish(projectId, token);
+    await loadProjects();
+  };
+
+  const handleLogout = () => {
+    logout();
+    setShowAdminPanel(false);
+  };
 
   return (
     <main className="min-h-screen bg-white">
@@ -147,6 +238,58 @@ export default function WorkPage() {
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-primary/10 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2" />
         <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-brand-secondary/10 rounded-full blur-[120px] translate-y-1/2 -translate-x-1/2" />
       </section>
+
+      {/* Admin Components */}
+      <AdminLogin
+        isOpen={showLoginModal}
+        onClose={() => setShowLoginModal(false)}
+        onLogin={login}
+      />
+
+      <AdminPanel
+        isOpen={showAdminPanel}
+        onClose={() => setShowAdminPanel(false)}
+        projects={isAuthenticated ? allProjects : projects}
+        onAddProject={handleAddProject}
+        onEditProject={handleEditProject}
+        onDeleteProject={handleDeleteProject}
+        onTogglePublish={handleTogglePublish}
+        onLogout={handleLogout}
+      />
+
+      <ProjectForm
+        isOpen={showProjectForm}
+        onClose={() => {
+          setShowProjectForm(false);
+          setEditingProject(null);
+        }}
+        onSubmit={handleProjectSubmit}
+        project={editingProject}
+      />
+
+      <DraftPreview
+        isOpen={showDraftPreview}
+        onClose={() => {
+          setShowDraftPreview(false);
+          setPreviewProject(null);
+        }}
+        project={previewProject}
+      />
+
+      {/* Floating Admin Button */}
+      {!authLoading && (
+        <motion.button
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={handleAdminButtonClick}
+          className="fixed bottom-8 right-8 w-16 h-16 rounded-full bg-gradient-to-br from-brand-primary to-brand-secondary text-white shadow-2xl hover:shadow-3xl transition-all z-40 flex items-center justify-center"
+          title={isAuthenticated ? "Open Admin Panel" : "Admin Login"}
+        >
+          <Shield className="w-7 h-7" />
+        </motion.button>
+      )}
     </main>
   );
 }

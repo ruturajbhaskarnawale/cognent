@@ -8,46 +8,46 @@ import { CursorTrail } from "@/components/effects/cursor-trail";
 
 const testimonials = [
   {
-    quote: "Antigravity completely re-engineered our logistics pipeline. Their AI agents now handle 90% of our scheduling, reducing overhead by 40% in just six months.",
-    author: "Sarah Johnson",
-    role: "CMO, TechFlow",
+    quote: "OddJobs completely re-engineered our logistics pipeline. Their AI agents now handle 90% of our scheduling, reducing overhead by 40% in just six months.",
+    author: "Aryan Sharma",
+    role: "Director, Varta Systems",
     rating: 5,
-    company: "TechFlow Systems"
+    company: "Varta"
   },
   {
-    quote: "The deep-tissue surgery they performed on our legacy monolithic architecture was flawless. Zero downtime, perfectly microserviced, and significantly faster.",
-    author: "Michael Chen",
-    role: "Founder, Nexus StartUp",
+    quote: "The digital surgery they performed on our legacy architecture was flawless. Zero downtime, perfectly microserviced, and significantly faster performance.",
+    author: "Priya Patel",
+    role: "Founder, Zenith Hub",
     rating: 5,
-    company: "Nexus"
+    company: "Zenith Hub"
   },
   {
     quote: "Engineering precision at its finest. They don't just build apps; they build high-performance data platforms that convert behaving users into loyal customers.",
-    author: "David Smithsonian",
-    role: "CTO, Enterprise Soft",
+    author: "Rohan Mehta",
+    role: "CTO, Indus Soft",
     rating: 5,
-    company: "Enterprise"
+    company: "Indus"
   },
   {
     quote: "Their focus on scalable architecture and security hardening gives us the confidence to scale globally. The most professional agency we've ever partnered with.",
-    author: "Elena Rodriguez",
-    role: "VP Engineering, GlobalScale",
+    author: "Ananya Iyer",
+    role: "VP Engineering, BharatScale",
     rating: 5,
-    company: "GlobalScale"
+    company: "BharatScale"
   },
   {
     quote: "A rare blend of aesthetic design and robust engineering. Our new membership portal is a masterpiece of both form and function. Highly recommended.",
-    author: "James Wilson",
-    role: "Director of Operations, Zenith Fitness",
+    author: "Vikram Singh",
+    role: "Director of Operations, Kratos Tech",
     rating: 5,
-    company: "Zenith"
+    company: "Kratos"
   },
   {
     quote: "The real-time analytics dashboard they built for us has become our company's command center. The data density and performance are truly impressive.",
-    author: "Aria Gupta",
-    role: "Head of Data, QuantIQ",
+    author: "Ishita Deshmukh",
+    role: "Head of Data, Sankhya IQ",
     rating: 5,
-    company: "QuantIQ"
+    company: "Sankhya IQ"
   }
 ];
 

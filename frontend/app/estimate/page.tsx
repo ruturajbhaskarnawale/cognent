@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { notifyEstimate } from "@/lib/api";
 
 const projectTypes = [
   { 
@@ -27,7 +28,6 @@ const projectTypes = [
     name: "MVP / Startup", 
     icon: Rocket,
     description: "Launch your idea fast",
-    basePrice: 15000,
     timeline: "6-8 weeks",
     color: "from-purple-500 to-pink-500"
   },
@@ -36,7 +36,6 @@ const projectTypes = [
     name: "Web Application", 
     icon: Globe,
     description: "Custom web platform",
-    basePrice: 30000,
     timeline: "10-14 weeks",
     color: "from-blue-500 to-cyan-500"
   },
@@ -45,7 +44,6 @@ const projectTypes = [
     name: "Mobile App", 
     icon: Smartphone,
     description: "iOS & Android apps",
-    basePrice: 40000,
     timeline: "12-16 weeks",
     color: "from-green-500 to-emerald-500"
   },
@@ -54,52 +52,67 @@ const projectTypes = [
     name: "Enterprise Solution", 
     icon: Shield,
     description: "Mission-critical systems",
-    basePrice: 75000,
     timeline: "16-24 weeks",
     color: "from-orange-500 to-red-500"
   },
 ];
 
 const features = [
-  { id: "auth", name: "User Authentication", price: 2000, icon: Shield },
-  { id: "payments", name: "Payment Integration", price: 3000, icon: TrendingUp },
-  { id: "admin", name: "Admin Dashboard", price: 5000, icon: Users },
-  { id: "api", name: "API Development", price: 4000, icon: Code },
-  { id: "analytics", name: "Analytics & Reporting", price: 3500, icon: TrendingUp },
-  { id: "realtime", name: "Real-time Features", price: 4500, icon: Zap },
+  { id: "auth", name: "User Authentication", icon: Shield },
+  { id: "payments", name: "Payment Integration", icon: TrendingUp },
+  { id: "admin", name: "Admin Dashboard", icon: Users },
+  { id: "api", name: "API Development", icon: Code },
+  { id: "analytics", name: "Analytics & Reporting", icon: TrendingUp },
+  { id: "realtime", name: "Real-time Features", icon: Zap },
 ];
 
 const teamSizes = [
-  { id: "solo", name: "Solo Developer", multiplier: 0.7 },
-  { id: "small", name: "Small Team (2-3)", multiplier: 1.0 },
-  { id: "medium", name: "Full Team (4-6)", multiplier: 1.3 },
-  { id: "large", name: "Large Team (7+)", multiplier: 1.6 },
+  { id: "solo", name: "Solo Developer" },
+  { id: "small", name: "Small Team (2-3)" },
+  { id: "medium", name: "Full Team (4-6)" },
+  { id: "large", name: "Large Team (7+)" },
 ];
 
 export default function EstimatePage() {
   const [selectedType, setSelectedType] = useState<string | null>(null);
   const [selectedFeatures, setSelectedFeatures] = useState<string[]>([]);
   const [selectedTeam, setSelectedTeam] = useState<string>("small");
-  const [showEstimate, setShowEstimate] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+  
+  // User Info State
+  const [userName, setUserName] = useState("");
+  const [userEmail, setUserEmail] = useState("");
+  const [userPhone, setUserPhone] = useState("");
 
-  const calculateEstimate = () => {
-    if (!selectedType) return 0;
+  const handleNotify = async (isStartOver: boolean = false) => {
+    if (!selectedType || isSubmitting) return;
+
+    // Optional validation for "Get Detailed Quote"
+    if (!isStartOver && (!userName || !userEmail)) {
+      alert("Please provide your name and email so we can get back to you.");
+      return;
+    }
     
-    const projectType = projectTypes.find(p => p.id === selectedType);
-    if (!projectType) return 0;
-
-    const basePrice = projectType.basePrice;
-    const featuresPrice = selectedFeatures.reduce((sum, featureId) => {
-      const feature = features.find(f => f.id === featureId);
-      return sum + (feature?.price || 0);
-    }, 0);
-
-    const teamMultiplier = teamSizes.find(t => t.id === selectedTeam)?.multiplier || 1;
-    
-    return Math.round((basePrice + featuresPrice) * teamMultiplier);
+    setIsSubmitting(true);
+    try {
+      await notifyEstimate({
+        project_type: selectedType,
+        features: selectedFeatures,
+        team_size: selectedTeam,
+        user_name: userName || undefined,
+        user_email: userEmail || undefined,
+        user_phone: userPhone || undefined,
+      });
+      setShowSuccess(true);
+      setTimeout(() => setShowSuccess(false), 3000);
+    } catch (error) {
+      console.error("Failed to notify estimate:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
-  const estimate = calculateEstimate();
   const selectedProjectType = projectTypes.find(p => p.id === selectedType);
 
   const toggleFeature = (featureId: string) => {
@@ -112,6 +125,22 @@ export default function EstimatePage() {
 
   return (
     <main className="min-h-screen bg-white">
+      {/* Success Notification */}
+      <AnimatePresence>
+        {showSuccess && (
+          <motion.div
+            initial={{ opacity: 0, y: -100, x: "-50%" }}
+            animate={{ opacity: 1, y: 20, x: "-50%" }}
+            exit={{ opacity: 0, y: -100, x: "-50%" }}
+            className="fixed top-8 left-1/2 -translate-x-1/2 z-[100] bg-brand-primary text-white px-8 py-4 rounded-full shadow-2xl flex items-center gap-3 border border-white/20 backdrop-blur-md"
+          >
+            <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center">
+              <CheckCircle2 className="w-5 h-5 text-white" />
+            </div>
+            <span className="font-bold tracking-tight text-lg">Message has been sent!</span>
+          </motion.div>
+        )}
+      </AnimatePresence>
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 overflow-hidden bg-gradient-to-b from-white via-brand-muted/30 to-white">
         {/* Animated Background Orbs */}
@@ -227,9 +256,6 @@ export default function EstimatePage() {
                   <p className="text-sm text-brand-black/60 mb-4">{type.description}</p>
                   <div className="flex items-center justify-between text-xs">
                     <span className="text-brand-black/40">{type.timeline}</span>
-                    <span className="font-bold text-brand-primary">
-                      ${(type.basePrice / 1000).toFixed(0)}K+
-                    </span>
                   </div>
                   
                   {selectedType === type.id && (
@@ -289,9 +315,6 @@ export default function EstimatePage() {
                         )}
                       </div>
                       <h3 className="font-bold text-brand-black mb-2">{feature.name}</h3>
-                      <p className="text-sm font-bold text-brand-secondary">
-                        +${(feature.price / 1000).toFixed(1)}K
-                      </p>
                     </motion.button>
                   ))}
                 </div>
@@ -339,9 +362,6 @@ export default function EstimatePage() {
                       <h3 className="font-bold text-brand-black text-center mb-2">
                         {team.name}
                       </h3>
-                      <p className="text-xs text-brand-black/60 text-center">
-                        {team.multiplier}x multiplier
-                      </p>
                     </motion.button>
                   ))}
                 </div>
@@ -365,82 +385,122 @@ export default function EstimatePage() {
                     <div className="absolute bottom-0 left-0 w-64 h-64 bg-brand-secondary rounded-full blur-[100px]" />
                   </div>
 
-                  <div className="relative z-10">
+                    <div className="relative z-10">
                     <div className="text-center mb-8">
                       <Sparkles className="w-12 h-12 text-brand-primary mx-auto mb-4" />
                       <h2 className="text-3xl md:text-4xl font-bold mb-2 font-heading">
-                        Your Estimated Investment
+                        Your Project Summary
                       </h2>
                       <p className="text-white/60">
-                        Based on your selections
+                        Configuration ready for review
                       </p>
                     </div>
 
                     <div className="text-center mb-8">
                       <motion.div
-                        key={estimate}
                         initial={{ scale: 0.8, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
-                        className="text-6xl md:text-8xl font-bold mb-4 font-heading"
+                        className="text-4xl md:text-6xl font-bold mb-4 font-heading"
                       >
-                        ${(estimate / 1000).toFixed(0)}K
+                        {selectedProjectType?.name}
                       </motion.div>
                       <p className="text-white/60 text-lg">
-                        Timeline: {selectedProjectType?.timeline}
+                        Estimated Timeline: {selectedProjectType?.timeline}
                       </p>
                     </div>
 
-                    {/* Breakdown */}
+                    {/* Configuration Summary */}
                     <div className="max-w-md mx-auto space-y-3 mb-8">
                       <div className="flex items-center justify-between p-4 rounded-2xl bg-white/5 backdrop-blur-sm">
-                        <span className="text-white/80">Base Project</span>
-                        <span className="font-bold">${(selectedProjectType?.basePrice || 0) / 1000}K</span>
+                        <span className="text-white/80">Project Type</span>
+                        <span className="font-bold text-brand-primary">{selectedProjectType?.name}</span>
                       </div>
                       {selectedFeatures.length > 0 && (
-                        <div className="flex items-center justify-between p-4 rounded-2xl bg-white/5 backdrop-blur-sm">
-                          <span className="text-white/80">Features ({selectedFeatures.length})</span>
-                          <span className="font-bold">
-                            +${selectedFeatures.reduce((sum, id) => {
+                        <div className="flex flex-col p-4 rounded-2xl bg-white/5 backdrop-blur-sm gap-2">
+                          <span className="text-white/80 text-sm">Selected Features</span>
+                          <div className="flex flex-wrap gap-2">
+                            {selectedFeatures.map(id => {
                               const feature = features.find(f => f.id === id);
-                              return sum + (feature?.price || 0);
-                            }, 0) / 1000}K
-                          </span>
+                              return (
+                                <span key={id} className="text-xs bg-brand-primary/20 text-brand-primary px-3 py-1 rounded-full border border-brand-primary/30">
+                                  {feature?.name}
+                                </span>
+                              );
+                            })}
+                          </div>
                         </div>
                       )}
                       <div className="flex items-center justify-between p-4 rounded-2xl bg-white/5 backdrop-blur-sm">
                         <span className="text-white/80">Team Size</span>
-                        <span className="font-bold">
-                          {teamSizes.find(t => t.id === selectedTeam)?.multiplier}x
+                        <span className="font-bold text-brand-secondary">
+                          {teamSizes.find(t => t.id === selectedTeam)?.name}
                         </span>
+                      </div>
+                    </div>
+
+                    {/* User Contact Form */}
+                    <div className="max-w-md mx-auto space-y-4 mb-8 pt-6 border-t border-white/10">
+                      <h3 className="text-lg font-bold text-white mb-2">Your Contact Details</h3>
+                      <div className="space-y-4">
+                        <input
+                          type="text"
+                          placeholder="Your Name"
+                          value={userName}
+                          onChange={(e) => setUserName(e.target.value)}
+                          className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-brand-primary transition-colors text-sm"
+                        />
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <input
+                            type="email"
+                            placeholder="Email Address"
+                            value={userEmail}
+                            onChange={(e) => setUserEmail(e.target.value)}
+                            className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-brand-primary transition-colors text-sm"
+                          />
+                          <input
+                            type="tel"
+                            placeholder="Phone Number"
+                            value={userPhone}
+                            onChange={(e) => setUserPhone(e.target.value)}
+                            className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-brand-primary transition-colors text-sm"
+                          />
+                        </div>
                       </div>
                     </div>
 
                     {/* CTA */}
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                      <Link href="/contact">
-                        <Button size="lg" className="rounded-full bg-white text-brand-black hover:bg-brand-primary hover:text-white transition-all duration-500 px-12 h-14 text-lg font-bold shadow-2xl">
-                          Get Detailed Quote
-                          <ArrowRight className="ml-2 w-5 h-5" />
-                        </Button>
-                      </Link>
+                      <Button 
+                        size="lg" 
+                        onClick={() => handleNotify(false)}
+                        className="rounded-full bg-white text-brand-black hover:bg-brand-primary hover:text-white transition-all duration-500 px-12 h-14 text-lg font-bold shadow-2xl" 
+                        disabled={isSubmitting}
+                      >
+                        {isSubmitting ? "Processing..." : "Get Detailed Quote"}
+                        <ArrowRight className="ml-2 w-5 h-5" />
+                      </Button>
                       <Button 
                         size="lg" 
                         variant="outline" 
                         className="rounded-full border-2 border-white/20 text-white hover:bg-white/10 transition-all duration-500 px-12 h-14 text-lg font-bold"
+                        disabled={isSubmitting}
                         onClick={() => {
+                          handleNotify(true);
                           setSelectedType(null);
                           setSelectedFeatures([]);
                           setSelectedTeam("small");
+                          setUserName("");
+                          setUserEmail("");
+                          setUserPhone("");
                         }}
                       >
-                        Start Over
+                        {isSubmitting ? "Sending..." : "Start Over"}
                       </Button>
                     </div>
 
                     {/* Disclaimer */}
                     <p className="text-center text-white/40 text-xs mt-8 max-w-2xl mx-auto">
-                      * This is a ballpark estimate. Final pricing depends on specific requirements, 
-                      complexity, and timeline. Contact us for a detailed, customized quote.
+                      * Our team will review your project configuration and get back to you with a detailed roadmap and final quote.
                     </p>
                   </div>
                 </div>

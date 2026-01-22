@@ -1,1 +1,1 @@
-from .all_models import Lead, Project, AuditLog
+from .all_models import Lead, Project, AuditLog, ContactSubmission, Subscription

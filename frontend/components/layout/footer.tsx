@@ -2,23 +2,50 @@
 
 import Link from "next/link";
 import { 
-  Github, 
-  Twitter, 
+  Instagram, 
   Linkedin, 
   Mail, 
   ArrowRight, 
   Globe, 
   Users, 
   ShieldCheck,
-  Send
+  Send,
+  Loader2,
+  CheckCircle2
 } from "lucide-react";
 import { servicesData } from "@/lib/services-data";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { subscribeNewsletter } from "@/lib/api";
+import { useState } from "react";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [message, setMessage] = useState("");
+
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+
+    setStatus("loading");
+    setMessage("");
+
+    try {
+      const response = await subscribeNewsletter(email);
+      setStatus("success");
+      setMessage(response.message || "Subscribed successfully!");
+      setEmail("");
+      // Reset status after 5 seconds
+      setTimeout(() => setStatus("idle"), 5000);
+    } catch (error: any) {
+      console.error("Subscription error:", error);
+      setStatus("error");
+      setMessage(error.message || "Failed to subscribe.");
+    }
+  };
 
   return (
     <footer className="w-full border-t border-brand-black/5 bg-white relative overflow-hidden pt-24 pb-12">
@@ -44,8 +71,7 @@ export function Footer() {
             </p>
             <div className="flex space-x-5">
               {[
-                { icon: Github, href: "https://github.com" },
-                { icon: Twitter, href: "https://twitter.com" },
+                { icon: Instagram, href: "https://instagram.com" },
                 { icon: Linkedin, href: "https://linkedin.com" },
                 { icon: Mail, href: "mailto:oddjobs1824@gmail.com" }
               ].map((social, i) => (
@@ -115,15 +141,54 @@ export function Footer() {
               </p>
             </div>
             
-            <div className="flex gap-2 relative z-10">
-              <Input 
-                placeholder="engineering@company.com" 
-                className="rounded-full h-12 bg-white border-brand-black/10 focus:ring-brand-primary/20"
-              />
-              <Button size="icon" className="rounded-full h-12 w-12 bg-brand-primary text-white hover:bg-brand-secondary shadow-lg hover:shadow-brand-primary/25 transition-all">
-                <Send className="w-5 h-5" />
-              </Button>
-            </div>
+            <form onSubmit={handleSubscribe} className="space-y-4 relative z-10">
+              <div className="flex gap-2">
+                <Input 
+                  type="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="engineering@company.com" 
+                  className="rounded-full h-12 bg-white border-brand-black/10 focus:ring-brand-primary/20 text-brand-white"
+                />
+                <Button 
+                  type="submit"
+                  disabled={status === "loading"}
+                  size="icon" 
+                  className="rounded-full h-12 w-12 bg-brand-primary text-white hover:bg-brand-secondary shadow-lg hover:shadow-brand-primary/25 transition-all flex-shrink-0"
+                >
+                  {status === "loading" ? (
+                    <Loader2 className="w-5 h-5 animate-spin" />
+                  ) : (
+                    <Send className="w-5 h-5" />
+                  )}
+                </Button>
+              </div>
+              
+              <AnimatePresence>
+                {status === "success" && (
+                  <motion.p 
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0 }}
+                    className="text-xs font-bold text-green-600 flex items-center gap-1"
+                  >
+                    <CheckCircle2 className="w-3 h-3" />
+                    {message}
+                  </motion.p>
+                )}
+                {status === "error" && (
+                  <motion.p 
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0 }}
+                    className="text-xs font-bold text-red-600"
+                  >
+                    {message}
+                  </motion.p>
+                )}
+              </AnimatePresence>
+            </form>
 
             <div className="flex items-center gap-6 pt-4 relative z-10">
               <div className="flex items-center gap-2 text-xs text-brand-black/40">
@@ -153,11 +218,11 @@ export function Footer() {
               <div className="w-2 h-2 rounded-full bg-brand-primary animate-pulse" />
               Systems Operational
             </div>
-            <Link href="/#faq">
+            {/* <Link href="#faq">
               <Button variant="ghost" className="rounded-full px-6 h-10 text-brand-black/60 font-bold hover:bg-brand-black/5">
                 Support Hub
               </Button>
-            </Link>
+            </Link> */}
           </div>
         </div>
       </div>

@@ -6,6 +6,7 @@ import { ScrollReveal } from "@/components/animations/scroll-reveal";
 import { Button } from "@/components/ui/button";
 import { CheckCircle2, ArrowRight, Zap, Shield, BarChart, Cpu, Database, Network } from "lucide-react";
 import { CursorTrail } from "@/components/effects/cursor-trail";
+import { MagneticButton } from "@/components/animations/magnetic-button";
 
 const features = [
     {
@@ -249,15 +250,18 @@ export function ServiceDeepDive() {
                                     ))}
                                 </div>
 
-                                <motion.div
-                                    whileHover={{ x: 5 }}
-                                    className="inline-block"
-                                >
-                                    <Button variant="outline" className="rounded-full px-10 h-14 border-brand-black/10 hover:border-brand-primary/30 hover:bg-brand-primary/5 text-brand-black font-bold group">
-                                        Deep Dive Into Solution 
-                                        <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                                    </Button>
-                                </motion.div>
+                                <MagneticButton>
+                                    <div className="inline-block">
+                                        <Button size="lg" className="relative group overflow-hidden rounded-full bg-brand-black text-white px-10 h-14 text-lg font-bold shadow-2xl hover:bg-brand-primary transition-all duration-500 border-none">
+                                            <span className="relative z-10 flex items-center gap-2">
+                                                Deep Dive Into Solution 
+                                                <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                                            </span>
+                                            {/* Pulsing Glow */}
+                                            <div className="absolute inset-0 bg-brand-primary opacity-0 group-hover:opacity-20 blur-2xl transition-opacity duration-500" />
+                                        </Button>
+                                    </div>
+                                </MagneticButton>
                             </ScrollReveal>
                         </div>
                     </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Plus, Minus, HelpCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -59,12 +60,14 @@ export function FAQ() {
                 Transparent answers to clarify our engineering process, technology choices, and project delivery.
               </p>
               
-              <div className="hidden lg:flex items-center gap-4 text-brand-primary font-bold group cursor-pointer">
-                <div className="w-12 h-12 rounded-full border border-brand-primary/20 flex items-center justify-center group-hover:bg-brand-primary group-hover:text-white transition-all duration-300">
-                  <HelpCircle className="w-5 h-5" />
+              <Link href="/contact">
+                <div className="hidden lg:flex items-center gap-4 text-brand-primary font-bold group cursor-pointer">
+                  <div className="w-12 h-12 rounded-full border border-brand-primary/20 flex items-center justify-center group-hover:bg-brand-primary group-hover:text-white transition-all duration-300">
+                    <HelpCircle className="w-5 h-5" />
+                  </div>
+                  <span>Need more clarity? Contact us.</span>
                 </div>
-                <span>Need more clarity? Contact us.</span>
-              </div>
+              </Link>
             </ScrollReveal>
           </div>
 
