@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: PageProps) {
   const project = await getProjectBySlug(params.slug);
   if (!project) return { title: "Project Not Found" };
   return {
-    title: `${project.client_name} - ${project.title} | OddJobs`,
+    title: `${project.client_name} - ${project.title} | Cognent`,
     description: project.challenge,
   };
 }
@@ -110,7 +110,7 @@ export default async function ProjectPage({ params }: PageProps) {
         
         {/* Animated Brand Mark Overlay */}
         <div className="absolute top-1/2 right-12 -translate-y-1/2 hidden lg:block opacity-10 pointer-events-none">
-            <img src="/logo/logo1.png" className="w-[400px] grayscale brightness-200" alt="" />
+            <img src="/logo/cognent1.png" className="w-[400px] grayscale brightness-200" alt="" />
         </div>
       </section>
 

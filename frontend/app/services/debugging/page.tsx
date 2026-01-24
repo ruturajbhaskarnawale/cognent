@@ -12,10 +12,10 @@ import { ServiceNav } from "@/components/services/service-nav";
 import { ServiceBackButton } from "@/components/services/service-back-button";
 
 export const metadata = {
-  title: "Technical Debugging Services | OddJobs - Expert Problem Solving",
+  title: "Technical Debugging Services | Cognent - Expert Problem Solving",
   description: "Complex problem solving for legacy systems. Root cause analysis, performance profiling, and robust long-term fixes for production issues.",
   openGraph: {
-    title: "Technical Debugging Services | OddJobs",
+    title: "Technical Debugging Services | Cognent",
     description: "We identify root causes and implement robust, long-term fixes for your most challenging technical problems.",
   },
 };

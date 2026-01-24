@@ -34,7 +34,7 @@ async def test():
     message = MIMEMultipart()
     message["From"] = smtp_user
     message["To"] = admin_email
-    message["Subject"] = "🧪 OddJobs Email Test"
+    message["Subject"] = "🧪 Cognent Email Test"
     
     body = """
     <h2>Email Test Successful!</h2>

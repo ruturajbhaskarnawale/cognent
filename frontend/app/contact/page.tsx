@@ -67,7 +67,7 @@ export default function ContactPage() {
     { 
       icon: Mail, 
       title: "Email Us", 
-      value: "oddjobs1824@gmail.com", 
+      value: "cognent1824@gmail.com", 
       sub: "Response within 24 hours",
       color: "text-brand-primary",
       bg: "bg-brand-primary/5",

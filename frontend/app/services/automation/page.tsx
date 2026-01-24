@@ -14,10 +14,10 @@ import { ServiceNav } from "@/components/services/service-nav";
 import { ServiceBackButton } from "@/components/services/service-back-button";
 
 export const metadata = {
-  title: "Custom Automation Solutions | OddJobs - Workflow & Process Automation",
+  title: "Custom Automation Solutions | Cognent - Workflow & Process Automation",
   description: "Eliminate repetitive tasks with bespoke automation solutions. Workflow orchestration, API integration, data pipelines, and custom scripts.",
   openGraph: {
-    title: "Custom Automation Solutions | OddJobs",
+    title: "Custom Automation Solutions | Cognent",
     description: "Automate manual processes and scale effortlessly with intelligent workflow automation.",
   },
 };

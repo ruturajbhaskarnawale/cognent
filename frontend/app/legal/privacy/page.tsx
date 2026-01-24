@@ -46,7 +46,7 @@ export default function PrivacyPage() {
             Privacy <span className="text-brand-primary">Policy.</span>
           </h1>
           <p className="text-xl text-brand-black/60 font-light leading-relaxed mb-16">
-            Last updated: January 22, 2026. At OddJobs Engineering, we treat your data with the Same precision as our code.
+            Last updated: January 22, 2026. At Cognent Engineering, we treat your data with the Same precision as our code.
           </p>
 
           <div className="grid gap-12">
@@ -80,8 +80,8 @@ export default function PrivacyPage() {
               <p className="text-white/60 mb-8 max-w-lg font-light">
                 Our team is available to clarify how we handle your data. Feel free to reach out to our engineering support for technical details.
               </p>
-              <a href="mailto:oddjobs1824@gmail.com" className="inline-flex items-center gap-2 font-bold text-brand-primary hover:text-white transition-colors">
-                oddjobs1824@gmail.com
+              <a href="mailto:cognent1824@gmail.com" className="inline-flex items-center gap-2 font-bold text-brand-primary hover:text-white transition-colors">
+                cognent1824@gmail.com
                 <Bell className="w-4 h-4" />
               </a>
             </div>

@@ -88,7 +88,7 @@ export function HeroSection() {
              className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/50 border border-brand-primary/10 backdrop-blur-md shadow-sm mb-8 hover:bg-white/80 transition-colors cursor-default"
           >
              <div className="w-5 h-5 bg-white rounded-md flex items-center justify-center p-0.5 overflow-hidden shadow-inner">
-               <img src="/logo/logo1.png" className="w-full h-full object-contain mix-blend-multiply" alt="OJ" />
+               <img src="/logo/cognent1.png" className="w-full h-full object-contain mix-blend-multiply" alt="Cognent" />
              </div>
              <span className="text-xs font-bold tracking-widest uppercase text-brand-primary/80">Next-Gen Engineering Studio</span>
           </motion.div>
@@ -177,7 +177,7 @@ export function HeroSection() {
             <Terminal className="w-4 h-4 text-black/20" />
           </div>
           <div className="flex-1 space-y-3 font-mono text-[10px] text-black/40">
-            <div className="flex items-center gap-2"><span className="text-brand-primary">const</span> engine = <span className="text-brand-secondary">new</span> OddJobsCore();</div>
+            <div className="flex items-center gap-2"><span className="text-brand-primary">const</span> engine = <span className="text-brand-secondary">new</span> CognentCore();</div>
             <div className="flex items-center gap-2">engine.optimize(<span className="text-brand-accent">"enterprise-scale"</span>);</div>
             <div className="h-2 w-[80%] bg-black/5 rounded-full" />
             <div className="h-2 w-[60%] bg-black/5 rounded-full" />

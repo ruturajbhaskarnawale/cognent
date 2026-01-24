@@ -7,15 +7,15 @@ const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
 
 export const metadata: Metadata = {
   title: {
-    default: "OddJobs | Enterprise AI & Technical Solutions",
-    template: "%s | OddJobs"
+    default: "Cognent | Enterprise AI & Technical Solutions",
+    template: "%s | Cognent"
   },
   description: "Global leader in AI integration, automated tool building, and technical problem solving.",
-  keywords: ["AI Integration", "Automation", "Technical Consulting", "Web Development", "OddJobs"],
+  keywords: ["AI Integration", "Automation", "Technical Consulting", "Web Development", "Cognent"],
   icons: {
-    icon: '/logo/logo1.png',
-    shortcut: '/logo/logo1.png',
-    apple: '/logo/logo1.png',
+    icon: '/logo/cognent1.png',
+    shortcut: '/logo/cognent1.png',
+    apple: '/logo/cognent1.png',
   },
 };
 

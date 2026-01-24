@@ -1,6 +1,6 @@
-# Agency Platform - Developer Handover
+# Cognent - Developer Handover
 ## Project Overview
-This project is a high-performance web agency platform built to act as a "Sales Machine" and "Trust Beacon".
+This project is a high-performance web platform for Cognent, built to act as a "Sales Machine" and "Trust Beacon".
 It features a **Next.js 14** frontend for SEO/speed and a **FastAPI** backend for robust logic and compliance logging.
 ## Repository Structure (`/`)
 - `frontend/` - Next.js App Router Application.

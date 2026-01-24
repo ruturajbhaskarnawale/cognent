@@ -8,7 +8,7 @@ import { CursorTrail } from "@/components/effects/cursor-trail";
 
 const testimonials = [
   {
-    quote: "OddJobs completely re-engineered our logistics pipeline. Their AI agents now handle 90% of our scheduling, reducing overhead by 40% in just six months.",
+    quote: "Cognent completely re-engineered our logistics pipeline. Their AI agents now handle 90% of our scheduling, reducing overhead by 40% in just six months.",
     author: "Aryan Sharma",
     role: "Director, Varta Systems",
     rating: 5,

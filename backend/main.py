@@ -21,7 +21,7 @@ async def lifespan(app: FastAPI):
     yield
 
 app = FastAPI(
-    title="Agency Platform API",
+    title="Cognent API",
     version="1.0.0",
     lifespan=lifespan
 )
@@ -32,7 +32,7 @@ origins = [
     "http://127.0.0.1:3000",
     "http://localhost:3001",
     "http://127.0.0.1:3001",
-    "https://oddjobs-lac.vercel.app",  # Production frontend
+    "https://cognent-lac.vercel.app",  # Production frontend
 ]
 
 # Allow all Vercel deployments using regex

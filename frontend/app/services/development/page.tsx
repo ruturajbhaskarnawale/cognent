@@ -13,10 +13,10 @@ import { ServiceNav } from "@/components/services/service-nav";
 import { ServiceBackButton } from "@/components/services/service-back-button";
 
 export const metadata = {
-  title: "Web & App Development | OddJobs - Custom Software Solutions",
+  title: "Web & App Development | Cognent - Custom Software Solutions",
   description: "Enterprise-grade web and mobile applications built for scale. Modern stacks like Next.js, React, React Native, and Python for SaaS, e-commerce, and custom platforms.",
   openGraph: {
-    title: "Web & App Development | OddJobs",
+    title: "Web & App Development | Cognent",
     description: "Build scalable, modern applications with expert full-stack development services.",
   },
 };

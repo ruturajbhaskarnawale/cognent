@@ -1,7 +1,7 @@
-# Agency Platform
+# Cognent
 
 ## Overview
-High-performance agency website/platform.
+Enterprise AI & Technical Solutions platform.
 
 ## Stack
 - **Frontend**: Next.js 14, Tailwind, Framer Motion

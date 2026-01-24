@@ -8,12 +8,12 @@ export default function TermsPage() {
     {
       title: "Service Acceptance",
       icon: Gavel,
-      content: "By accessing or using the OddJobs platform, you agree to be bound by these high-stakes engineering terms. If you do not agree, you must cease all use of our services immediately."
+      content: "By accessing or using the Cognent platform, you agree to be bound by these high-stakes engineering terms. If you do not agree, you must cease all use of our services immediately."
     },
     {
       title: "Intellectual Property",
       icon: Copyright,
-      content: "All source code, proprietary algorithms, design systems, and visual assets are the exclusive property of OddJobs Engineering Inc. Unauthorized replication or reverse engineering is strictly prohibited."
+      content: "All source code, proprietary algorithms, design systems, and visual assets are the exclusive property of Cognent Engineering Inc. Unauthorized replication or reverse engineering is strictly prohibited."
     },
     {
       title: "Acceptable Use",
@@ -23,7 +23,7 @@ export default function TermsPage() {
     {
       title: "Limitation of Liability",
       icon: AlertTriangle,
-      content: "OddJobs providing high-performance bespoke solutions, we shall not be liable for any indirect, incidental, or consequential damages resulting from the use or inability to use our specialized frameworks."
+      content: "Cognent providing high-performance bespoke solutions, we shall not be liable for any indirect, incidental, or consequential damages resulting from the use or inability to use our specialized frameworks."
     }
   ];
 
@@ -46,7 +46,7 @@ export default function TermsPage() {
             Terms of <span className="text-brand-secondary">Service.</span>
           </h1>
           <p className="text-xl text-brand-black/60 font-light leading-relaxed mb-16">
-            Last updated: January 22, 2026. These terms govern the professional relationship between your enterprise and OddJobs Engineering.
+            Last updated: January 22, 2026. These terms govern the professional relationship between your enterprise and Cognent Engineering.
           </p>
 
           <div className="grid gap-12">

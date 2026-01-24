@@ -14,10 +14,10 @@ import { ServiceBackButton } from "@/components/services/service-back-button";
 
 
 export const metadata = {
-  title: "System Optimization Services | OddJobs - Performance & Security Enhancement",
+  title: "System Optimization Services | Cognent - Performance & Security Enhancement",
   description: "Enhance existing platforms for speed, security, and reliability. Performance tuning, database optimization, caching strategies, and infrastructure improvements.",
   openGraph: {
-    title: "System Optimization Services | OddJobs",
+    title: "System Optimization Services | Cognent",
     description: "Make your applications faster, more secure, and more reliable with expert optimization services.",
   },
 };

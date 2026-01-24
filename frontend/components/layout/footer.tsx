@@ -59,12 +59,12 @@ export function Footer() {
             <Link href="/" className="flex items-center gap-3 group">
               <div className="h-12 w-12 rounded-xl bg-white p-1.5 shadow-md flex items-center justify-center overflow-hidden">
                 <img 
-                  src="/logo/logo1.png" 
-                  alt="OddJobs Logo" 
+                  src="/logo/cognent1.png" 
+                  alt="Cognent Logo" 
                   className="w-full h-full object-contain mix-blend-multiply transition-transform group-hover:scale-110 duration-500" 
                 />
               </div>
-              <span className="text-2xl font-bold font-heading text-brand-black tracking-tight">OddJobs</span>
+              <span className="text-2xl font-bold font-heading text-brand-black tracking-tight">Cognent</span>
             </Link>
             <p className="text-lg text-brand-black/60 leading-relaxed max-w-sm font-light">
               Engineering the future of enterprise work with bespoke AI, automation, and world-class software architecture.
@@ -73,7 +73,7 @@ export function Footer() {
               {[
                 { icon: Instagram, href: "https://instagram.com" },
                 { icon: Linkedin, href: "https://linkedin.com" },
-                { icon: Mail, href: "mailto:oddjobs1824@gmail.com" }
+                { icon: Mail, href: "mailto:cognent1824@gmail.com" }
               ].map((social, i) => (
                 <motion.a 
                   key={i}
@@ -206,7 +206,7 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="pt-12 border-t border-brand-black/5 flex flex-col items-center justify-between gap-8 md:flex-row text-sm">
           <div className="flex items-center gap-6 order-2 md:order-1">
-            <p className="text-brand-black/40 font-medium">© {currentYear} OddJobs Engineering Inc.</p>
+            <p className="text-brand-black/40 font-medium">© {currentYear} Cognent Engineering Inc.</p>
             <div className="hidden md:flex gap-4">
               <Link href="/legal/privacy" className="text-brand-black/40 hover:text-brand-black transition-colors">Privacy</Link>
               <Link href="/legal/terms" className="text-brand-black/40 hover:text-brand-black transition-colors">Terms</Link>

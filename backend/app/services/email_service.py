@@ -23,7 +23,7 @@ class EmailService:
         self.smtp_username = os.getenv("SMTP_USERNAME")
         self.smtp_password = os.getenv("SMTP_PASSWORD")
         self.from_email = os.getenv("SMTP_FROM_EMAIL")
-        self.from_name = os.getenv("SMTP_FROM_NAME", "OddJobs Team")
+        self.from_name = os.getenv("SMTP_FROM_NAME", "Cognent Team")
         self.admin_email = os.getenv("ADMIN_EMAIL")
         self.skip_ssl_verify = os.getenv("SMTP_SKIP_SSL_VERIFY", "False").lower() == "true"
 
@@ -188,7 +188,7 @@ class EmailService:
                 <div class="content">
                     <div class="checkmark">✓</div>
                     <p>Hi {name},</p>
-                    <p>Thank you for reaching out to <strong>OddJobs</strong>! We've received your message and our team will review it shortly.</p>
+                    <p>Thank you for reaching out to <strong>Cognent</strong>! We've received your message and our team will review it shortly.</p>
                     
                     <h3>What happens next?</h3>
                     <ul>
@@ -199,15 +199,15 @@ class EmailService:
                     
                     <p>In the meantime, feel free to explore our work:</p>
                     <div style="text-align: center;">
-                        <a href="https://oddjobs.com/work" class="button">View Our Projects</a>
+                        <a href="https://cognent.com/work" class="button">View Our Projects</a>
                     </div>
                     
                     <p>Best regards,<br>
-                    <strong>The OddJobs Team</strong></p>
+                    <strong>The Cognent Team</strong></p>
                 </div>
                 <div class="footer">
                     <p>This is an automated confirmation. Please do not reply to this email.</p>
-                    <p>If you need immediate assistance, contact us at oddjobs1824@gmail.com</p>
+                    <p>If you need immediate assistance, contact us at cognent1824@gmail.com</p>
                 </div>
             </div>
         </body>
@@ -217,7 +217,7 @@ class EmailService:
         plain_content = f"""
         Hi {name},
 
-        Thank you for reaching out to OddJobs! We've received your message and our team will review it shortly.
+        Thank you for reaching out to Cognent! We've received your message and our team will review it shortly.
 
         What happens next?
         • Our team will review your inquiry
@@ -225,7 +225,7 @@ class EmailService:
         • We'll discuss how we can help with your project
 
         Best regards,
-        The OddJobs Team
+        The Cognent Team
 
         ---
         This is an automated confirmation. Please do not reply to this email.
@@ -290,7 +290,7 @@ class EmailService:
         <body>
             <div class="container">
                 <div class="header">
-                    <h1>🎉 Welcome to OddJobs!</h1>
+                    <h1>🎉 Welcome to Cognent!</h1>
                 </div>
                 <div class="content">
                     <p>Thank you for subscribing to our newsletter!</p>
@@ -302,7 +302,7 @@ class EmailService:
                     </ul>
                     <p>We're excited to have you on board!</p>
                     <p>Best regards,<br>
-                    <strong>The OddJobs Team</strong></p>
+                    <strong>The Cognent Team</strong></p>
                 </div>
                 <div class="footer">
                     <p>You can unsubscribe at any time by clicking the link in our emails.</p>
@@ -314,7 +314,7 @@ class EmailService:
 
         return await self.send_email(
             to_email=email,
-            subject="🎉 Welcome to OddJobs Updates!",
+            subject="🎉 Welcome to Cognent Updates!",
             html_content=html_content
         )
 
@@ -396,7 +396,7 @@ class EmailService:
                     </div>
 
                     <div class="footer">
-                        <p>Sent via OddJobs Estimate Notification System</p>
+                        <p>Sent via Cognent Estimate Notification System</p>
                         <p>{datetime.now().strftime("%B %d, %Y at %I:%M %p")}</p>
                     </div>
                 </div>

@@ -14,10 +14,10 @@ import { ServiceNav } from "@/components/services/service-nav";
 import { ServiceBackButton } from "@/components/services/service-back-button";
 
 export const metadata = {
-  title: "AI & ML Solutions | OddJobs - Intelligent Automation & Machine Learning",
+  title: "AI & ML Solutions | Cognent - Intelligent Automation & Machine Learning",
   description: "Transform your business with cutting-edge AI and machine learning solutions. LLM integration, predictive analytics, NLP, computer vision, and intelligent automation.",
   openGraph: {
-    title: "AI & ML Solutions | OddJobs",
+    title: "AI & ML Solutions | Cognent",
     description: "Leverage advanced artificial intelligence to automate decision-making, extract insights, and deliver intelligent experiences.",
   },
 };

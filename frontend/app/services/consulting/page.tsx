@@ -13,10 +13,10 @@ import { ServiceNav } from "@/components/services/service-nav";
 import { ServiceBackButton } from "@/components/services/service-back-button";
 
 export const metadata = {
-  title: "Technical Consulting & Guidance | OddJobs - Strategic Technology Advisory",
+  title: "Technical Consulting & Guidance | Cognent - Strategic Technology Advisory",
   description: "End-to-end technical guidance from concept to deployment. Architecture design, stack selection, project roadmapping, and expert advisory services.",
   openGraph: {
-    title: "Technical Consulting & Guidance | OddJobs",
+    title: "Technical Consulting & Guidance | Cognent",
     description: "Strategic project management and technical advisory to help you make the right technology decisions.",
   },
 };

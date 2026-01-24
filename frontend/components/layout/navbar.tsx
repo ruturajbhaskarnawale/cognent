@@ -100,13 +100,13 @@ export function Navbar() {
           <Link href="/" className="flex items-center gap-2 group relative z-50">
             <div className="h-10 w-10 rounded-xl bg-white flex items-center justify-center p-1 shadow-sm group-hover:rotate-6 transition-transform duration-500 overflow-hidden">
                <img 
-                 src="/logo/logo1.png" 
-                 alt="OddJobs Logo" 
+                 src="/logo/cognent1.png" 
+                 alt="Cognent Logo" 
                  className="w-full h-full object-contain mix-blend-multiply transition-transform duration-500 group-hover:scale-110" 
                />
             </div>
             <span className="text-2xl font-bold tracking-tighter text-brand-black font-heading group-hover:text-brand-primary transition-colors duration-300">
-              OddJobs
+              Cognent
             </span>
           </Link>
 
