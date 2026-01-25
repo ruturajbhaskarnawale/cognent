@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { 
+  Facebook,
   Instagram, 
   Linkedin, 
   Mail, 
@@ -71,8 +72,9 @@ export function Footer() {
             </p>
             <div className="flex space-x-5">
               {[
-                { icon: Instagram, href: "https://instagram.com" },
-                { icon: Linkedin, href: "https://linkedin.com" },
+                { icon: Facebook, href: "https://www.facebook.com/profile.php?id=61587198385418" },
+                { icon: Instagram, href: "https://www.instagram.com/cognent_/?hl=en" },
+                { icon: Linkedin, href: "https://www.linkedin.com/company/syntropic-ai/?viewAsMember=true" },
                 { icon: Mail, href: "mailto:cognent1824@gmail.com" }
               ].map((social, i) => (
                 <motion.a 
@@ -87,49 +89,8 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Column 2: Services */}
-          <div className="lg:col-span-2 space-y-6">
-            <h4 className="text-sm font-bold tracking-widest text-brand-black uppercase opacity-40">Expertise</h4>
-            <ul className="space-y-4">
-              {Object.values(servicesData).map((service) => (
-                <li key={service.slug}>
-                  <Link 
-                    href={`/services/${service.slug}`} 
-                    className="text-brand-black/60 hover:text-brand-primary transition-all duration-300 font-medium flex items-center group"
-                  >
-                    <ArrowRight className="w-0 h-3 group-hover:w-3 mr-0 group-hover:mr-2 opacity-0 group-hover:opacity-100 transition-all duration-300" />
-                    {service.title.split(' ')[0]} {service.title.split(' ')[1] || ''}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Column 3: Company & Resources */}
-          <div className="lg:col-span-2 space-y-6">
-            <h4 className="text-sm font-bold tracking-widest text-brand-black uppercase opacity-40">Company</h4>
-            <ul className="space-y-4">
-              {[
-                { name: "Selected Work", href: "/work" },
-                { name: "Our Process", href: "/#process" },
-                { name: "Client Stories", href: "/#testimonials" },
-                { name: "Careers", href: "/careers" },
-                { name: "Contact", href: "/contact" }
-              ].map((link) => (
-                <li key={link.name}>
-                  <Link 
-                    href={link.href} 
-                    className="text-brand-black/60 hover:text-brand-primary transition-all duration-300 font-medium"
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
           {/* Column 4: Newsletter/CTA */}
-          <div className="lg:col-span-4 space-y-8 p-8 rounded-[2.5rem] bg-brand-primary/[0.03] border border-brand-primary/10 relative overflow-hidden">
+          <div className="lg:col-span-8 space-y-8 p-8 rounded-[2.5rem] bg-brand-primary/[0.03] border border-brand-primary/10 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-32 h-32 bg-brand-primary/10 blur-3xl -translate-y-1/2 translate-x-1/2" />
             
             <div className="space-y-4 relative z-10">
