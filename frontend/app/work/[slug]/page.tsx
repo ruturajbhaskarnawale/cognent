@@ -249,27 +249,29 @@ export default async function ProjectPage({ params }: PageProps) {
       </section>
 
       {/* Next Project Journey */}
-      <section className="py-24 border-t border-brand-black/5 bg-white overflow-hidden group/journey">
-        <Link href={`/work/${nextProject.slug}`} className="block">
-            <div className="container mx-auto px-6 lg:px-12 flex flex-col items-center text-center">
-                <span className="text-brand-black/30 font-bold text-xs uppercase tracking-widest mb-8 block transition-colors group-hover/journey:text-brand-primary">Next Success Story</span>
-                <h3 className="text-3xl md:text-6xl font-bold text-brand-black tracking-tighter font-heading mb-12 group-hover/journey:scale-105 transition-transform duration-700">
-                    {nextProject.client_name}
-                    <ArrowRight className="inline-block ml-4 md:ml-8 w-8 h-8 md:w-16 md:h-16 text-brand-black/10 transition-all group-hover/journey:text-brand-primary group-hover/journey:translate-x-4" />
-                </h3>
-                
-                <div className="relative w-full max-w-4xl aspect-[21/9] rounded-[2rem] overflow-hidden grayscale group-hover/journey:grayscale-0 transition-all duration-700 shadow-xl">
-                    <Image
-                        src={nextProject.thumbnail_url || "/placeholder.jpg"}
-                        alt=""
-                        fill
-                        className="object-cover scale-105 group-hover/journey:scale-100 transition-transform duration-1000"
-                    />
-                    <div className="absolute inset-0 bg-brand-black/20" />
-                </div>
-            </div>
-        </Link>
-      </section>
+      {nextProject && (
+        <section className="py-24 border-t border-brand-black/5 bg-white overflow-hidden group/journey">
+          <Link href={`/work/${nextProject.slug}`} className="block">
+              <div className="container mx-auto px-6 lg:px-12 flex flex-col items-center text-center">
+                  <span className="text-brand-black/30 font-bold text-xs uppercase tracking-widest mb-8 block transition-colors group-hover/journey:text-brand-primary">Next Success Story</span>
+                  <h3 className="text-3xl md:text-6xl font-bold text-brand-black tracking-tighter font-heading mb-12 group-hover/journey:scale-105 transition-transform duration-700">
+                      {nextProject.client_name}
+                      <ArrowRight className="inline-block ml-4 md:ml-8 w-8 h-8 md:w-16 md:h-16 text-brand-black/10 transition-all group-hover/journey:text-brand-primary group-hover/journey:translate-x-4" />
+                  </h3>
+                  
+                  <div className="relative w-full max-w-4xl aspect-[21/9] rounded-[2rem] overflow-hidden grayscale group-hover/journey:grayscale-0 transition-all duration-700 shadow-xl">
+                      <Image
+                          src={nextProject.thumbnail_url || "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&h=400&fit=crop"}
+                          alt=""
+                          fill
+                          className="object-cover scale-105 group-hover/journey:scale-100 transition-transform duration-1000"
+                      />
+                      <div className="absolute inset-0 bg-brand-black/20" />
+                  </div>
+              </div>
+          </Link>
+        </section>
+      )}
 
       {/* Modern Footer CTA Link */}
       <section className="bg-brand-black py-20">

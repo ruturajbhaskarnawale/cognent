@@ -5,7 +5,7 @@ export const API_URL = (process.env.NEXT_PUBLIC_API_URL || "http://localhost:800
 export async function getProjects(): Promise<Project[]> {
     try {
         const res = await fetch(`${API_URL}/api/v1/projects`, {
-            cache: "no-store", // Ensure fresh data
+            next: { revalidate: 60 }, // Revalidate every 60 seconds
         });
         if (!res.ok) {
             console.error(`Failed to fetch projects from: ${API_URL}/api/v1/projects`);
@@ -22,7 +22,7 @@ export async function getProjects(): Promise<Project[]> {
 export async function getProjectBySlug(slug: string): Promise<Project | null> {
     try {
         const res = await fetch(`${API_URL}/api/v1/projects/${slug}`, {
-            cache: "no-store",
+            next: { revalidate: 60 }, // Revalidate every 60 seconds
         });
         if (!res.ok) return null;
         return res.json();
