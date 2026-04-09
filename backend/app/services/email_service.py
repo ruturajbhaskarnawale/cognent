@@ -26,6 +26,54 @@ class EmailService:
         self.from_name = os.getenv("SMTP_FROM_NAME", "Cognent Team")
         self.admin_email = os.getenv("ADMIN_EMAIL")
         self.skip_ssl_verify = os.getenv("SMTP_SKIP_SSL_VERIFY", "False").lower() == "true"
+        self.brand_primary = "#7c3aed"  # Brand Purple
+        self.brand_secondary = "#14b8a6" # Brand Teal
+        self.brand_black = "#000000"
+
+    def _get_base_styles(self):
+        return f"""
+            body {{ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #1a1a1a; margin: 0; padding: 0; background-color: #f8fafc; }}
+            .container {{ max-width: 600px; margin: 20px auto; background: #ffffff; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1); border: 1px solid #e2e8f0; }}
+            .header {{ background: {self.brand_black}; color: white; padding: 40px 20px; text-align: center; position: relative; overflow: hidden; }}
+            .header-orb {{ position: absolute; top: 0; right: 0; width: 150px; hieght: 150px; background: {self.brand_primary}; opacity: 0.2; filter: blur(40px); border-radius: 50%; }}
+            .content {{ padding: 40px; }}
+            .section {{ margin-bottom: 25px; }}
+            .label {{ font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: #64748b; font-weight: 700; margin-bottom: 8px; }}
+            .value {{ font-size: 15px; color: #0f172a; font-weight: 600; padding: 12px 16px; background: #f8fafc; border-radius: 12px; border-left: 4px solid {self.brand_primary}; }}
+            .footer {{ text-align: center; padding: 30px; color: #94a3b8; font-size: 12px; border-top: 1px solid #f1f5f9; }}
+            .button {{ display: inline-block; padding: 14px 32px; background: {self.brand_black}; color: #ffffff !important; text-decoration: none; border-radius: 12px; font-weight: 700; margin: 20px 0; transition: all 0.3s ease; }}
+            .badge {{ display: inline-block; padding: 4px 12px; border-radius: 9999px; font-size: 11px; font-weight: 700; background: #f0fdf4; color: #166534; margin-bottom: 10px; }}
+            .icon-box {{ wdtih: 48px; height: 48px; background: rgba(124, 58, 237, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; }}
+        """
+
+    def _get_html_wrapper(self, title, content_html, badge=None):
+        return f"""
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="utf-8">
+            <style>
+                {self._get_base_styles()}
+            </style>
+        </head>
+        <body>
+            <div class="container">
+                <div class="header">
+                    <div class="header-orb"></div>
+                    <h1 style="margin:0; font-size: 24px; position: relative; z-index: 1;">{title}</h1>
+                </div>
+                <div class="content">
+                    {f'<div style="text-align: center;"><span class="badge">{badge}</span></div>' if badge else ''}
+                    {content_html}
+                </div>
+                <div class="footer">
+                    <p>© {datetime.now().year} Cognent Engineering Inc.</p>
+                    <p>High-Performance Systems & Architecture</p>
+                </div>
+            </div>
+        </body>
+        </html>
+        """
 
     async def send_email(
         self,
@@ -425,6 +473,142 @@ class EmailService:
             subject=f"🚀 New Estimate Config: {user_name or project_type}",
             html_content=html_content,
             plain_content=plain_content
+        )
+
+    async def send_estimate_confirmation_to_client(
+        self,
+        name: str,
+        email: str,
+        project_type: str,
+        features: list,
+        team_size: str
+    ) -> bool:
+        """Send confirmation email to user who completed the estimate"""
+        
+        features_list = "".join([f"<li>{f}</li>" for f in features]) if features else "<li>Standard Architecture</li>"
+        
+        content = f"""
+        <p>Hi {name or 'there'},</p>
+        <p>Thank you for using the <strong>Cognent Project Estimator</strong>. We've received your configuration and our team is currently reviewing your project requirements.</p>
+        
+        <div class="section">
+            <div class="label">Your Selected Configuration</div>
+            <div class="value">
+                <strong>Project:</strong> {project_type}<br/>
+                <strong>Team:</strong> {team_size}<br/>
+                <div style="margin-top: 10px;">
+                    <strong>Features:</strong><br/>
+                    <ul style="margin: 5px 0 0 0; padding-left: 20px; color: #475569; font-size: 13px;">
+                        {features_list}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <h3>What happens next?</h3>
+        <p>1. Our senior architects will perform a technical feasibility check.<br/>
+        2. We'll prepare a detailed roadmap and final quote.<br/>
+        3. You'll receive a follow-up email from our team within 24 hours.</p>
+        
+        <div style="text-align: center;">
+            <a href="https://cognent.com/work" class="button">Browse Case Studies</a>
+        </div>
+        
+        <p>Best regards,<br><strong>The Cognent Team</strong></p>
+        """
+        
+        html_content = self._get_html_wrapper(
+            "✅ Estimate Received",
+            content,
+            badge="Project Readiness Diagnostic"
+        )
+
+        return await self.send_email(
+            to_email=email,
+            subject="✅ Cognent: Your Project Estimate is being reviewed",
+            html_content=html_content
+        )
+
+    async def send_audit_notification_to_admin(
+        self,
+        name: str,
+        email: str,
+        website: Optional[str] = None,
+        challenges: Optional[str] = None
+    ) -> bool:
+        """Notify admin of new audit request"""
+        
+        content = f"""
+        <div class="section">
+            <div class="label">Requester Information</div>
+            <div class="value">
+                <strong>Name:</strong> {name}<br/>
+                <strong>Email:</strong> <a href="mailto:{email}">{email}</a>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="label">System / Website</div>
+            <div class="value">{website or 'Not provided'}</div>
+        </div>
+
+        <div class="section">
+            <div class="label">Identified Bottlenecks</div>
+            <div class="value" style="background: #fff1f2; border-left-color: #e11d48; font-weight: normal; color: #475569;">
+                {challenges or 'No specific challenges provided'}
+            </div>
+        </div>
+        """
+        
+        html_content = self._get_html_wrapper(
+            "🚀 New Scale Audit Request",
+            content,
+            badge="High Priority Lead"
+        )
+
+        return await self.send_email(
+            to_email=self.admin_email,
+            subject=f"🚀 Audit Request: {name}",
+            html_content=html_content
+        )
+
+    async def send_audit_confirmation_to_client(self, name: str, email: str) -> bool:
+        """Send confirmation email to user who requested an audit"""
+        
+        content = f"""
+        <p>Hi {name},</p>
+        <p>Thank you for requesting a <strong>Cognent Scale Readiness Audit</strong>. Your system diagnostic has been prioritized.</p>
+        
+        <p>At Cognent, we don't just look at code—we audit for the breaking points that kill growth. Our senior engineering team is now reviewing your request.</p>
+
+        <div style="background: #fdf2f8; border-radius: 16px; padding: 24px; margin: 25px 0; border: 1px solid #fbcfe8;">
+            <h4 style="margin-top:0; color: #be185d;">Next Steps:</h4>
+            <ul style="margin-bottom:0; color: #831843; padding-left: 20px;">
+                <li>Initial system verification (Next 4-6 hours)</li>
+                <li>Architectural review scheduled</li>
+                <li>Strategic Roadmap delivery (48-hour window)</li>
+            </ul>
+        </div>
+
+        <p>We'll reach out shortly if we need additional technical documentation or access.</p>
+        
+        <div style="text-align: center;">
+            <a href="https://cognent.com/architecture-audit" class="button">Audit Overview</a>
+        </div>
+        
+        <p>Best regards,<br><strong>The Cognent Team</strong></p>
+        """
+        
+        html_content = self._get_html_wrapper(
+            "🛠️ Audit Request Confirmed",
+            content,
+            badge="Cognent Engineering Review"
+        )
+
+        return await self.send_email(
+            to_email=email,
+            subject="🛠️ Cognent Audit: We've started your review",
+            html_content=html_content
         )
 
 

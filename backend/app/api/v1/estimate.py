@@ -39,7 +39,7 @@ async def notify_estimate(
     if not check_rate_limit(client_ip):
         raise HTTPException(status_code=429, detail="Too many requests")
 
-    success = await email_service.send_estimate_notification_to_admin(
+    admin_success = await email_service.send_estimate_notification_to_admin(
         project_type=data.project_type,
         features=data.features,
         team_size=data.team_size,
@@ -48,7 +48,17 @@ async def notify_estimate(
         user_phone=data.user_phone
     )
 
-    if not success:
+    # Send confirmation to user if email is provided
+    if data.user_email:
+        await email_service.send_estimate_confirmation_to_client(
+            name=data.user_name,
+            email=data.user_email,
+            project_type=data.project_type,
+            features=data.features,
+            team_size=data.team_size
+        )
+
+    if not admin_success:
         raise HTTPException(status_code=500, detail="Failed to send notification")
 
     return {"success": True, "message": "Notification sent"}

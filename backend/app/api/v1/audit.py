@@ -40,34 +40,17 @@ async def submit_audit_request(
         raise HTTPException(status_code=429, detail="Too many requests. Please try again later.")
 
     # Send email to admin
-    html_content = f"""
-    <h1>🚀 New Scale Readiness Audit Request</h1>
-    <p><strong>Name:</strong> {data.name}</p>
-    <p><strong>Email:</strong> {data.email}</p>
-    <p><strong>Website/System:</strong> {data.website or 'Not provided'}</p>
-    <p><strong>Challenges:</strong> {data.challenges or 'Not provided'}</p>
-    <hr>
-    <p>Submitted at: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}</p>
-    """
-    
-    admin_success = await email_service.send_email(
-        to_email=email_service.admin_email,
-        subject=f"🚀 Audit Request: {data.name}",
-        html_content=html_content
+    admin_success = await email_service.send_audit_notification_to_admin(
+        name=data.name,
+        email=data.email,
+        website=data.website,
+        challenges=data.challenges
     )
     
     # Send confirmation to user
-    user_html = f"""
-    <h2>We've Received Your Audit Request!</h2>
-    <p>Hi {data.name},</p>
-    <p>Thank you for requesting a Scale Readiness Audit. Our senior architects will review your project details and get back to you within 48 hours.</p>
-    <p>Best regards,<br>The Cognent Team</p>
-    """
-    
-    user_success = await email_service.send_email(
-        to_email=data.email,
-        subject="✅ Scale Readiness Audit Received",
-        html_content=user_html
+    user_success = await email_service.send_audit_confirmation_to_client(
+        name=data.name,
+        email=data.email
     )
 
     if not admin_success:
