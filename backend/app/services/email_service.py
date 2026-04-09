@@ -533,6 +533,7 @@ class EmailService:
         self,
         name: str,
         email: str,
+        phone: str,
         website: Optional[str] = None,
         challenges: Optional[str] = None
     ) -> bool:
@@ -543,7 +544,8 @@ class EmailService:
             <div class="label">Requester Information</div>
             <div class="value">
                 <strong>Name:</strong> {name}<br/>
-                <strong>Email:</strong> <a href="mailto:{email}">{email}</a>
+                <strong>Email:</strong> <a href="mailto:{email}">{email}</a><br/>
+                <strong>Phone:</strong> {phone}
             </div>
         </div>
 

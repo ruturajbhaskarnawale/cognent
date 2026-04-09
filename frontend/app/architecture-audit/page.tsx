@@ -51,13 +51,14 @@ export default function AuditPage() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    phone: "",
     website: "",
     challenges: ""
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.name || !formData.email) return;
+    if (!formData.name || !formData.email || !formData.phone) return;
     
     setIsSubmitting(true);
     setError(null);
@@ -65,7 +66,7 @@ export default function AuditPage() {
     try {
         await sendAuditRequest(formData);
         setShowSuccess(true);
-        setFormData({ name: "", email: "", website: "", challenges: "" });
+        setFormData({ name: "", email: "", phone: "", website: "", challenges: "" });
         setTimeout(() => setShowSuccess(false), 5000);
     } catch (err: any) {
         console.error("Audit request error:", err);
@@ -292,6 +293,17 @@ export default function AuditPage() {
                           value={formData.email}
                           onChange={(e) => setFormData({...formData, email: e.target.value})}
                           placeholder="name@company.com"
+                          className="w-full bg-brand-muted border-none rounded-2xl px-6 py-4 focus:ring-2 focus:ring-brand-primary focus:bg-white transition-all outline-none text-brand-black font-bold"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <label className="text-[10px] font-black uppercase tracking-widest text-brand-black/40">Contact Number</label>
+                        <input 
+                          type="tel" 
+                          required
+                          value={formData.phone}
+                          onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                          placeholder="+91 99999 99999"
                           className="w-full bg-brand-muted border-none rounded-2xl px-6 py-4 focus:ring-2 focus:ring-brand-primary focus:bg-white transition-all outline-none text-brand-black font-bold"
                         />
                       </div>

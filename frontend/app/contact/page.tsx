@@ -29,6 +29,7 @@ export default function ContactPage() {
     email: "",
     message: "",
     subject: "",
+    phone: "",
   });
   
   const [firstName, setFirstName] = useState("");
@@ -47,13 +48,13 @@ export default function ContactPage() {
         name: `${firstName} ${lastName}`.trim() || formData.name,
       };
 
-      if (!fullData.name || !fullData.email || !fullData.message) {
+      if (!fullData.name || !fullData.email || !fullData.message || !fullData.phone) {
         throw new Error("Please fill in all required fields.");
       }
 
       await sendContactForm(fullData);
       setStatus("success");
-      setFormData({ name: "", email: "", message: "", subject: "" });
+      setFormData({ name: "", email: "", message: "", subject: "", phone: "" });
       setFirstName("");
       setLastName("");
     } catch (error: any) {
@@ -277,16 +278,29 @@ export default function ContactPage() {
                             </div>
                           </div>
                           
-                          <div className="space-y-3">
-                            <label className="text-xs font-bold uppercase tracking-widest text-brand-black/40 ml-4">Email Address</label>
-                            <input 
-                              type="email" 
-                              required
-                              value={formData.email}
-                              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                              className="w-full h-14 bg-brand-black/[0.03] border-brand-black/5 rounded-2xl px-6 text-[15px] font-medium focus:bg-white focus:ring-4 focus:ring-brand-primary/10 focus:border-brand-primary/30 transition-all outline-none" 
-                              placeholder="aryan@company.com" 
-                            />
+                           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div className="space-y-3">
+                              <label className="text-xs font-bold uppercase tracking-widest text-brand-black/40 ml-4">Email Address</label>
+                              <input 
+                                type="email" 
+                                required
+                                value={formData.email}
+                                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                                className="w-full h-14 bg-brand-black/[0.03] border-brand-black/5 rounded-2xl px-6 text-[15px] font-medium focus:bg-white focus:ring-4 focus:ring-brand-primary/10 focus:border-brand-primary/30 transition-all outline-none" 
+                                placeholder="aryan@company.com" 
+                              />
+                            </div>
+                            <div className="space-y-3">
+                              <label className="text-xs font-bold uppercase tracking-widest text-brand-black/40 ml-4">Phone Number</label>
+                              <input 
+                                type="tel" 
+                                required
+                                value={formData.phone}
+                                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                                className="w-full h-14 bg-brand-black/[0.03] border-brand-black/5 rounded-2xl px-6 text-[15px] font-medium focus:bg-white focus:ring-4 focus:ring-brand-primary/10 focus:border-brand-primary/30 transition-all outline-none" 
+                                placeholder="+91 99999 99999" 
+                              />
+                            </div>
                           </div>
 
                           <div className="space-y-3">

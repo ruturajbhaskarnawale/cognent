@@ -88,9 +88,9 @@ export default function EstimatePage() {
   const handleNotify = async (isStartOver: boolean = false) => {
     if (!selectedType || isSubmitting) return;
 
-    // Optional validation for "Get Detailed Quote"
-    if (!isStartOver && (!userName || !userEmail)) {
-      alert("Please provide your name and email so we can get back to you.");
+    // Mandatory validation for "Get Detailed Quote"
+    if (!isStartOver && (!userName || !userEmail || !userPhone)) {
+      alert("Please provide your name, email, and contact number so we can get back to you.");
       return;
     }
     
@@ -100,9 +100,9 @@ export default function EstimatePage() {
         project_type: selectedType,
         features: selectedFeatures,
         team_size: selectedTeam,
-        user_name: userName || undefined,
-        user_email: userEmail || undefined,
-        user_phone: userPhone || undefined,
+        user_name: userName,
+        user_email: userEmail,
+        user_phone: userPhone,
       });
       setShowSuccess(true);
       setTimeout(() => setShowSuccess(false), 3000);
@@ -459,6 +459,7 @@ export default function EstimatePage() {
                           />
                           <input
                             type="tel"
+                            required
                             placeholder="Phone Number"
                             value={userPhone}
                             onChange={(e) => setUserPhone(e.target.value)}

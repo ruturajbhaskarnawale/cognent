@@ -179,8 +179,8 @@ export interface ContactFormData {
     name: string;
     email: string;
     message: string;
+    phone: string;
     subject?: string;
-    phone?: string;
     company?: string;
 }
 
@@ -223,9 +223,9 @@ export interface EstimateNotifyData {
     project_type: string;
     features: string[];
     team_size: string;
+    user_phone: string;
     user_name?: string;
     user_email?: string;
-    user_phone?: string;
 }
 
 export async function notifyEstimate(data: EstimateNotifyData): Promise<EmailResponse> {
@@ -246,6 +246,7 @@ export async function notifyEstimate(data: EstimateNotifyData): Promise<EmailRes
 export interface AuditRequestData {
     name: string;
     email: string;
+    phone: string;
     website?: string;
     challenges?: string;
 }

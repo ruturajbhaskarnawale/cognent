@@ -1,13 +1,13 @@
-"use client";
-
 import { SpotlightCard } from "@/components/animations/spotlight-card";
 import { ScrollReveal } from "@/components/animations/scroll-reveal";
-import { Brain, Bot, Wrench, Compass, Code, TrendingUp, ArrowRight } from "lucide-react";
+import { Brain, Bot, Wrench, Compass, Code, TrendingUp, ArrowRight, Sparkles } from "lucide-react";
 import Link from "next/link";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { MagneticButton } from "@/components/animations/magnetic-button";
-
 import { CursorTrail } from "@/components/effects/cursor-trail";
+import { Modal } from "@/components/ui/modal";
+import { CapabilityForm } from "@/components/features/capability-form";
 
 const products = [
   {
@@ -46,14 +46,22 @@ const products = [
 ];
 
 export function ServicesSection() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedCapability, setSelectedCapability] = useState("");
+
+  const handleOpenModal = (e: React.MouseEvent, title: string) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setSelectedCapability(title);
+    setIsOpen(true);
+  };
+
   return (
     <section className="py-32 bg-white relative overflow-hidden">
-      {/* Cursor Trail Effect */}
-      <CursorTrail />
-
       {/* Background Decorative Elements */}
       <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-[800px] h-[800px] bg-brand-primary/5 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-brand-secondary/5 rounded-full blur-[120px] pointer-events-none" />
+      <CursorTrail />
 
       <div className="container mx-auto px-6 lg:px-12 relative z-10">
         <ScrollReveal width="100%">
@@ -127,17 +135,27 @@ export function ServicesSection() {
                   </ul>
                 </div>
 
-                <div className="flex items-center text-sm font-bold text-brand-black/40 group-hover:text-brand-primary transition-all duration-300 mt-auto">
-                  <span className="mr-2 uppercase tracking-widest text-[10px]">Select Tier</span>
-                  <div className="w-8 h-[2px] bg-brand-black/10 transition-all duration-300 group-hover:w-12 group-hover:bg-brand-primary" />
-                  <ArrowRight className="ml-2 h-4 w-4 opacity-0 -translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0" />
+                <div className="space-y-6 mt-auto">
+                    <button 
+                        onClick={(e) => handleOpenModal(e, product.title)}
+                        className="w-full flex items-center justify-center gap-2 py-4 rounded-2xl bg-brand-black text-white text-[10px] font-black uppercase tracking-[0.2em] hover:bg-brand-primary transition-all duration-500 group/btn"
+                    >
+                        <Sparkles className="w-3.5 h-3.5 text-brand-primary group-hover/btn:text-white transition-colors" />
+                        Get Started
+                    </button>
+
+                    <div className="flex items-center text-sm font-bold text-brand-black/40 group-hover:text-brand-primary transition-all duration-300">
+                    <span className="mr-2 uppercase tracking-widest text-[10px]">Read Insights</span>
+                    <div className="w-8 h-[2px] bg-brand-black/10 transition-all duration-300 group-hover:w-12 group-hover:bg-brand-primary" />
+                    <ArrowRight className="ml-2 h-4 w-4 opacity-0 -translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0" />
+                    </div>
                 </div>
               </SpotlightCard>
             </Link>
           ))}
         </div>
 
-        {/* View All Services Button */}
+        {/* View All Services Button (Magnetic) */}
         <div className="mt-20 text-center">
             <MagneticButton>
                 <Link 
@@ -148,12 +166,23 @@ export function ServicesSection() {
                         View All Expertise
                         <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
                     </span>
-                    {/* Shine Effect */}
                     <div className="absolute inset-0 -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/25 to-transparent z-0" />
                 </Link>
             </MagneticButton>
         </div>
       </div>
+
+      {/* Modal Integration */}
+      <Modal 
+        isOpen={isOpen} 
+        onClose={() => setIsOpen(false)} 
+        title={`Request Capability`}
+      >
+        <CapabilityForm 
+            capability={selectedCapability} 
+            onSuccess={() => setIsOpen(false)} 
+        />
+      </Modal>
     </section>
   );
 }

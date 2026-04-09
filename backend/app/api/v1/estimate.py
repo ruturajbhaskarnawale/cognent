@@ -23,9 +23,9 @@ class EstimateNotificationRequest(BaseModel):
     project_type: str
     features: List[str]
     team_size: str
+    user_phone: str
     user_name: Optional[str] = None
     user_email: Optional[str] = None
-    user_phone: Optional[str] = None
 
 @router.post("/notify")
 async def notify_estimate(

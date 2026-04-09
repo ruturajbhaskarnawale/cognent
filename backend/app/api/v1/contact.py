@@ -37,8 +37,8 @@ class ContactFormRequest(BaseModel):
     name: str
     email: EmailStr
     message: str
+    phone: str
     subject: Optional[str] = None
-    phone: Optional[str] = None
     company: Optional[str] = None
 
 class SubscribeRequest(BaseModel):

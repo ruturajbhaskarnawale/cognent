@@ -24,6 +24,7 @@ def check_rate_limit(ip: str, max_requests: int = 5, window_minutes: int = 60) -
 class AuditRequest(BaseModel):
     name: str
     email: EmailStr
+    phone: str
     website: Optional[str] = None
     challenges: Optional[str] = None
 
@@ -43,6 +44,7 @@ async def submit_audit_request(
     admin_success = await email_service.send_audit_notification_to_admin(
         name=data.name,
         email=data.email,
+        phone=data.phone,
         website=data.website,
         challenges=data.challenges
     )
