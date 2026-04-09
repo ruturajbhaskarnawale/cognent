@@ -49,7 +49,7 @@ const navItems = [
       { 
         name: "System Build & Optimization", 
         description: "Hardening your infrastructure for 10x traffic spikes.", 
-        href: "/solutions/build", 
+        href: "/solutions/system-build", 
         icon: Code 
       },
       { 

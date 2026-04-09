@@ -93,7 +93,7 @@ export function Footer() {
             <h4 className="text-sm font-black uppercase tracking-widest text-brand-black">Solutions</h4>
             <ul className="space-y-4 text-sm font-medium">
               <li><Link href="/architecture-audit" className="text-brand-black/60 hover:text-brand-primary transition-colors">Scale Audit</Link></li>
-              <li><Link href="/solutions/build" className="text-brand-black/60 hover:text-brand-primary transition-colors">Systems Build</Link></li>
+              <li><Link href="/solutions/system-build" className="text-brand-black/60 hover:text-brand-primary transition-colors">Systems Build</Link></li>
               <li><Link href="/solutions/partnership" className="text-brand-black/60 hover:text-brand-primary transition-colors">Partnership</Link></li>
             </ul>
           </div>

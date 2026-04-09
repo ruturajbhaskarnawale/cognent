@@ -36,7 +36,7 @@ const tiers = [
     description: "End-to-end infrastructure hardening for high-concurrency systems.",
     features: ["Cloud-Native Migration", "API Hardening", "Database Refactoring", "Zero-Downtime Deployment"],
     cta: "Get Estimate",
-    href: "/solutions/build",
+    href: "/solutions/system-build",
     highlight: true,
     icon: Cloud
   },

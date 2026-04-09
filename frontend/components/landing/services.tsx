@@ -29,7 +29,7 @@ const products = [
     icon: Code,
     color: "bg-brand-primary/10 text-brand-primary",
     spotlight: "rgba(124, 58, 237, 0.1)",
-    href: "/solutions/build",
+    href: "/solutions/system-build",
     tag: "The Implementation",
     features: ["Cloud-Native Setup", "Database Hardening", "API Optimization"]
   },
