@@ -1,3 +1,5 @@
+"use client";
+
 import { SpotlightCard } from "@/components/animations/spotlight-card";
 import { ScrollReveal } from "@/components/animations/scroll-reveal";
 import { Brain, Bot, Wrench, Compass, Code, TrendingUp, ArrowRight, Sparkles } from "lucide-react";
