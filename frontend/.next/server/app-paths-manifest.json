@@ -1,7 +1,0 @@
-{
-  "/page": "app/page.js",
-  "/architecture-audit/page": "app/architecture-audit/page.js",
-  "/legal/terms/page": "app/legal/terms/page.js",
-  "/work/page": "app/work/page.js",
-  "/work/[slug]/page": "app/work/[slug]/page.js"
-}
