@@ -248,7 +248,7 @@ export default function AuditPage() {
                          <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-brand-primary">
                             <CheckCircle2 className="w-5 h-5" />
                          </div>
-                         <div className="text-sm font-bold uppercase tracking-widest">₹50,000 Flat Fee</div>
+                         <div className="text-sm font-bold uppercase tracking-widest">₹14,999 Flat Fee</div>
                       </div>
                       <div className="flex items-center gap-4">
                          <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-amber-500">

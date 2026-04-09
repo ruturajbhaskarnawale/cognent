@@ -21,7 +21,7 @@ const tiers = [
   {
     id: "audit",
     title: "Scale Readiness Audit",
-    price: "₹50,000",
+    price: "₹14,999",
     description: "The 360° technical diagnostic to identify bottlenecks before they break your business.",
     features: ["Architecture Risk Mapping", "Database Heatmaps", "Deliverable: 12-Month Roadmap", "Deliverable: Technical Debt Audit"],
     cta: "Claim Your Audit",
@@ -32,7 +32,7 @@ const tiers = [
   {
     id: "build",
     title: "System Build & Optimization",
-    price: "₹2L - ₹10L+",
+    price: "₹49,999+",
     description: "End-to-end infrastructure hardening for high-concurrency systems.",
     features: ["Cloud-Native Migration", "API Hardening", "Database Refactoring", "Zero-Downtime Deployment"],
     cta: "Get Estimate",
@@ -43,7 +43,7 @@ const tiers = [
   {
     id: "partnership",
     title: "Engineering Partnership",
-    price: "Monthly Retainer",
+    price: "From ₹29,999/mo",
     description: "Continuous architecture evolution and AI integration for high-growth teams.",
     features: ["Embedded CTO Advisory", "24/7 Security Hardening", "AI Agent Integration", "Scaling Support Team"],
     cta: "Request Partnership",

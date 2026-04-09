@@ -15,7 +15,7 @@ const faqs = [
   },
   {
     question: "How much does a typical engagement cost?",
-    answer: "Our entry-level Scale Readiness Audit starts at ₹50,000. Core build and optimization projects typically range from ₹2L to ₹10L+ depending on the complexity of the architecture and required outcomes.",
+    answer: "Our entry-level Scale Readiness Audit starts at ₹14,999. Core build and optimization projects typically range from ₹49,999 to ₹2L+ depending on the complexity of the architecture and required outcomes.",
   },
   {
     question: "Why focus on architecture instead of just building features?",
