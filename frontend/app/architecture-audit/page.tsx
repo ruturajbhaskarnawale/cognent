@@ -19,6 +19,7 @@ import { Button } from "@/components/ui/button";
 import { ScrollReveal } from "@/components/animations/scroll-reveal";
 import { SpotlightCard } from "@/components/animations/spotlight-card";
 import { CursorTrail } from "@/components/effects/cursor-trail";
+import { sendAuditRequest } from "@/lib/api";
 
 const auditDeliverables = [
   {
