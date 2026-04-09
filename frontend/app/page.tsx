@@ -9,12 +9,14 @@ import { ServiceDeepDive } from "@/components/landing/deep-dive";
 import { Testimonials } from "@/components/landing/testimonials";
 import { FAQ } from "@/components/landing/faq";
 import { getProjects } from "@/lib/api";
+import { ScrollLeadTrigger } from "@/components/features/scroll-lead-trigger";
 
 export default async function Home() {
   const projects = await getProjects();
 
   return (
     <main className="flex min-h-screen flex-col bg-brand-muted">
+      <ScrollLeadTrigger />
       <HeroSection />
       <TechMarquee />
       <ProblemSection />

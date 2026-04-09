@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { CheckCircle2, ArrowRight, Zap, Shield, BarChart, Cpu, Database, Network } from "lucide-react";
 import { CursorTrail } from "@/components/effects/cursor-trail";
 import { MagneticButton } from "@/components/animations/magnetic-button";
+import { useLeadModal } from "@/context/lead-modal-context";
 
 const features = [
     {
@@ -180,6 +181,7 @@ const FeatureVisual = ({ id }: { id: string }) => {
 
 export function ServiceDeepDive() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const { openModal } = useLeadModal();
 
   return (
     <section id="capabilities" ref={containerRef} className="py-32 bg-white relative overflow-hidden">
@@ -252,7 +254,11 @@ export function ServiceDeepDive() {
 
                                 <MagneticButton>
                                     <div className="inline-block">
-                                        <Button size="lg" className="relative group overflow-hidden rounded-full bg-brand-black text-white px-10 h-14 text-lg font-bold shadow-2xl hover:bg-brand-primary transition-all duration-500 border-none">
+                                        <Button 
+                                            size="lg" 
+                                            onClick={() => openModal(feature.title)}
+                                            className="relative group overflow-hidden rounded-full bg-brand-black text-white px-10 h-14 text-lg font-bold shadow-2xl hover:bg-brand-primary transition-all duration-500 border-none"
+                                        >
                                             <span className="relative z-10 flex items-center gap-2">
                                                 Deep Dive Into Solution 
                                                 <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-1 transition-transform" />

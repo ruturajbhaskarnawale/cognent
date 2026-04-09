@@ -8,8 +8,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { MagneticButton } from "@/components/animations/magnetic-button";
 import { CursorTrail } from "@/components/effects/cursor-trail";
-import { Modal } from "@/components/ui/modal";
-import { CapabilityForm } from "@/components/features/capability-form";
+import { useLeadModal } from "@/context/lead-modal-context";
 
 const products = [
   {
@@ -48,14 +47,12 @@ const products = [
 ];
 
 export function ServicesSection() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [selectedCapability, setSelectedCapability] = useState("");
+  const { openModal } = useLeadModal();
 
   const handleOpenModal = (e: React.MouseEvent, title: string) => {
     e.preventDefault();
     e.stopPropagation();
-    setSelectedCapability(title);
-    setIsOpen(true);
+    openModal(title);
   };
 
   return (
@@ -174,17 +171,6 @@ export function ServicesSection() {
         </div>
       </div>
 
-      {/* Modal Integration */}
-      <Modal 
-        isOpen={isOpen} 
-        onClose={() => setIsOpen(false)} 
-        title={`Request Capability`}
-      >
-        <CapabilityForm 
-            capability={selectedCapability} 
-            onSuccess={() => setIsOpen(false)} 
-        />
-      </Modal>
     </section>
   );
 }

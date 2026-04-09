@@ -22,6 +22,7 @@ export const metadata: Metadata = {
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { ConsentManager } from "@/components/features/compliance/consent-manager";
+import { LeadModalProvider } from "@/context/lead-modal-context";
 
 export default function RootLayout({
   children,
@@ -31,12 +32,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} ${outfit.variable} font-sans antialiased text-brand-black bg-white`}>
-        <Navbar />
-        <main className="min-h-screen">
-            {children}
-        </main>
-        <Footer />
-        <ConsentManager />
+        <LeadModalProvider>
+            <Navbar />
+            <main className="min-h-screen">
+                {children}
+            </main>
+            <Footer />
+            <ConsentManager />
+        </LeadModalProvider>
       </body>
     </html>
   );
