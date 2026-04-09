@@ -226,13 +226,13 @@ export function ProjectForm({ isOpen, onClose, onSubmit, project }: ProjectFormP
 
                         {/* Challenge/Description */}
                         <div>
-                            <label className="block text-sm font-bold text-brand-black mb-2">
-                                Challenge
+                            <label className="block text-sm font-bold text-brand-black mb-2 uppercase tracking-wider">
+                                01. THE CRISIS (Business Problem) *
                             </label>
                             <textarea
                                 value={formData.challenge}
                                 onChange={(e) => setFormData({ ...formData, challenge: e.target.value })}
-                                placeholder="Describe the project challenge"
+                                placeholder="Describe the high-stakes problem. Why was business survival or scale at risk? (e.g., 'System collapsing under 20x surge traffic')"
                                 rows={3}
                                 className="w-full px-4 py-3 rounded-xl border border-brand-black/10 bg-white/50 focus:bg-white focus:border-brand-primary focus:outline-none focus:ring-2 focus:ring-brand-primary/20 transition-all resize-none"
                             />
@@ -240,13 +240,13 @@ export function ProjectForm({ isOpen, onClose, onSubmit, project }: ProjectFormP
 
                         {/* Full Description */}
                         <div>
-                            <label className="block text-sm font-bold text-brand-black mb-2">
-                                Full Description
+                            <label className="block text-sm font-bold text-brand-black mb-2 uppercase tracking-wider">
+                                02. THE INFRASTRUCTURE (The Hardening) *
                             </label>
                             <textarea
                                 value={formData.description}
                                 onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                                placeholder="Detailed project description"
+                                placeholder="Details of the technical architecting and hardening. How did we solve it to ensure it never breaks again?"
                                 rows={4}
                                 className="w-full px-4 py-3 rounded-xl border border-brand-black/10 bg-white/50 focus:bg-white focus:border-brand-primary focus:outline-none focus:ring-2 focus:ring-brand-primary/20 transition-all resize-none"
                             />
@@ -297,14 +297,14 @@ export function ProjectForm({ isOpen, onClose, onSubmit, project }: ProjectFormP
 
                         {/* ROI Metrics */}
                         <div>
-                            <label className="block text-sm font-bold text-brand-black mb-2">
-                                ROI Metrics
+                            <label className="block text-sm font-bold text-brand-black mb-2 uppercase tracking-wider">
+                                03. THE OUTCOME (ROI & Proof) *
                             </label>
                             <input
                                 type="text"
                                 value={formData.roi_metrics}
                                 onChange={(e) => setFormData({ ...formData, roi_metrics: e.target.value })}
-                                placeholder="e.g., 40% performance improvement"
+                                placeholder="e.g., '100% uptime through BFCM surge', 'Response latency reduced to 20ms'"
                                 className="w-full px-4 py-3 rounded-xl border border-brand-black/10 bg-white/50 focus:bg-white focus:border-brand-primary focus:outline-none focus:ring-2 focus:ring-brand-primary/20 transition-all"
                             />
                         </div>

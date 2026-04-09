@@ -13,10 +13,10 @@ import { CursorTrail } from "@/components/effects/cursor-trail";
 export function HeroSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const rotatingTexts = [
-    "Future of Work.",
-    "Sales AI.",
-    "Data Trust.",
-    "Growth Engine."
+    "Systems for Scale.",
+    "Bespoke AI Architecture.",
+    "High-Performance Infra.",
+    "Technical Debt Surgery."
   ];
 
   const { scrollYProgress } = useScroll({
@@ -32,7 +32,7 @@ export function HeroSection() {
   const springY1 = useSpring(y1, { stiffness: 100, damping: 30 });
   const springY2 = useSpring(y2, { stiffness: 100, damping: 30 });
 
-  const titleWords = "Engineering Your".split(" ");
+  const titleWords = "Build systems that".split(" ");
 
   return (
     <section 
@@ -90,7 +90,7 @@ export function HeroSection() {
              <div className="w-5 h-5 bg-white rounded-md flex items-center justify-center p-0.5 overflow-hidden shadow-inner">
                <img src="/logo/cognent1.png" className="w-full h-full object-contain mix-blend-multiply" alt="Cognent" />
              </div>
-             <span className="text-xs font-bold tracking-widest uppercase text-brand-primary/80">Next-Gen Engineering Studio</span>
+             <span className="text-xs font-bold tracking-widest uppercase text-brand-primary/80">Productized Engineering Partner</span>
           </motion.div>
 
           {/* Kinetic Headline */}
@@ -115,6 +115,14 @@ export function HeroSection() {
             </span>
             <span className="mt-2 text-brand-primary relative">
                <TextRotator texts={rotatingTexts} className="min-w-[400px]" />
+               <motion.span 
+                 initial={{ opacity: 0, x: -20 }}
+                 animate={{ opacity: 1, x: 0 }}
+                 transition={{ delay: 1 }}
+                 className="block text-brand-black/90 mt-2"
+               >
+                 Don’t Break at Scale.
+               </motion.span>
                {/* Decorative underline */}
                <motion.div 
                  initial={{ width: 0 }}
@@ -128,23 +136,23 @@ export function HeroSection() {
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8 }}
+            transition={{ delay: 1.2 }}
             className="text-lg md:text-xl text-brand-black/50 mb-12 max-w-2xl mx-auto font-medium leading-relaxed"
           >
-            We architect custom AI infrastructure, high-performance automation, and bespoke software that transforms technical debt into strategic power.
+            From architecture to AI — we help you avoid rebuilding your product. Stop fighting fires; start scaling with absolute engineering confidence.
           </motion.p>
 
           <motion.div 
              initial={{ opacity: 0, y: 20 }}
              animate={{ opacity: 1, y: 0 }}
-             transition={{ delay: 1 }}
+             transition={{ delay: 1.5 }}
              className="flex flex-col sm:flex-row gap-6 justify-center items-center"
           >
             <MagneticButton>
-              <Link href="/contact">
+              <Link href="/architecture-audit">
                 <Button size="lg" className="relative group overflow-hidden rounded-full bg-brand-black text-white px-10 h-16 text-lg font-bold shadow-2xl hover:bg-brand-primary transition-all duration-500">
                   <span className="relative z-10 flex items-center gap-2">
-                      Start Your Project
+                      Get Your Scale Audit
                       <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </span>
                   {/* Pulsing Glow */}
@@ -153,9 +161,9 @@ export function HeroSection() {
               </Link>
             </MagneticButton>
 
-            <Link href="/services">
+            <Link href="/work">
               <Button variant="ghost" size="lg" className="rounded-full text-brand-black/60 font-bold hover:text-brand-black hover:bg-brand-black/5 px-8 h-12 text-lg">
-                View Capabilities
+                View Scaling Proof
               </Button>
             </Link>
           </motion.div>

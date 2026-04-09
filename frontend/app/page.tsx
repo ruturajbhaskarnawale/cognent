@@ -1,6 +1,8 @@
 import { HeroSection } from "@/components/landing/hero";
 import { TechMarquee } from "@/components/landing/tech-marquee";
 import { ServicesSection } from "@/components/landing/services";
+import { ProblemSection } from "@/components/landing/problem-section";
+import { InsightSection } from "@/components/landing/insight-section";
 import { SelectedWork } from "@/components/landing/selected-work";
 import { ProcessFlow } from "@/components/landing/process-flow";
 import { ServiceDeepDive } from "@/components/landing/deep-dive";
@@ -15,6 +17,8 @@ export default async function Home() {
     <main className="flex min-h-screen flex-col bg-brand-muted">
       <HeroSection />
       <TechMarquee />
+      <ProblemSection />
+      <InsightSection />
       <ServicesSection />
       <ProcessFlow />
       <ServiceDeepDive />

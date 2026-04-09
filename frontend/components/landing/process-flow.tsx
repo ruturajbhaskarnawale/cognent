@@ -10,30 +10,30 @@ import { CursorTrail } from "@/components/effects/cursor-trail";
 
 const steps = [
     {
-        icon: MessageSquare,
-        title: "Describe",
-        desc: "You explain your technical challenge or idea. We listen, dive deep, and define the scope together.",
+        icon: Search,
+        title: "Audit",
+        desc: "We perform a deep-tissue diagnostic of your system to identify hidden risks and scaling bottlenecks before they become disasters.",
         color: "bg-blue-50 text-blue-600",
         spotlight: "rgba(59, 130, 246, 0.1)"
     },
     {
-        icon: Search,
-        title: "Analyze",
-        desc: "We research and architect the perfect solution, choosing the right stack for scalability and speed.",
+        icon: MessageSquare,
+        title: "Architect",
+        desc: "We design the blueprint for your 10x growth, choosing a cloud-native stack that optimizes for both performance and cost-efficiency.",
         color: "bg-purple-50 text-purple-600",
         spotlight: "rgba(168, 85, 247, 0.1)"
     },
     {
         icon: Hammer,
-        title: "Build",
-        desc: "Our engineers construct your tool or platform with precision, following agile best practices.",
+        title: "Harden",
+        desc: "Our engineers reconstruct your infrastructure with precision, refactoring legacy debt into a bulletproof foundation.",
         color: "bg-teal-50 text-teal-600",
         spotlight: "rgba(20, 184, 166, 0.1)"
     },
     {
         icon: Rocket,
-        title: "Deliver",
-        desc: "We deploy, test, and hand over the keys. Your success is our ultimate delivery metric.",
+        title: "Scale",
+        desc: "We deploy and partner for the long term, integrating AI agents and continuously evolving your architecture as you grow.",
         color: "bg-rose-50 text-rose-600",
         spotlight: "rgba(225, 29, 72, 0.1)"
     }

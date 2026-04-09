@@ -120,12 +120,12 @@ export default async function ProjectPage({ params }: PageProps) {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-20 items-start">
                 <div className="lg:col-span-4 lg:sticky lg:top-32">
                     <ScrollReveal>
-                        <div className="w-16 h-16 rounded-2xl bg-brand-primary/10 flex items-center justify-center mb-8">
-                            <Target className="w-8 h-8 text-brand-primary" />
+                        <div className="w-16 h-16 rounded-2xl bg-red-500/10 flex items-center justify-center mb-8">
+                            <Shield className="w-8 h-8 text-red-500" />
                         </div>
-                        <h2 className="text-4xl font-bold text-brand-black mb-6 tracking-tight font-heading">The Mission</h2>
+                        <h2 className="text-4xl font-bold text-brand-black mb-6 tracking-tight font-heading uppercase">01. The Crisis</h2>
                         <p className="text-brand-black/60 font-light leading-relaxed">
-                            Deep-tuning technical feasibility with market-driven business objectives.
+                            The high-stakes business challenge that threatened scale and stability.
                         </p>
                     </ScrollReveal>
                 </div>
@@ -134,9 +134,9 @@ export default async function ProjectPage({ params }: PageProps) {
                     <ScrollReveal>
                         <div className="p-10 rounded-[2.5rem] bg-brand-muted border border-brand-black/5 relative overflow-hidden group">
                             <div className="relative z-10">
-                                <h3 className="text-sm font-black text-brand-black/20 uppercase tracking-[0.3em] mb-8">01. Strategic Objective</h3>
-                                <p className="text-2xl md:text-3xl font-medium text-brand-black leading-snug">
-                                    {project.challenge}
+                                <h3 className="text-sm font-black text-brand-black/20 uppercase tracking-[0.3em] mb-8">System Failure Risk</h3>
+                                <p className="text-2xl md:text-3xl font-medium text-brand-black leading-snug italic">
+                                    "{project.challenge}"
                                 </p>
                             </div>
                             <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
@@ -175,10 +175,10 @@ export default async function ProjectPage({ params }: PageProps) {
         <div className="container mx-auto px-6 lg:px-12 relative z-10">
             <div className="text-center mb-24 max-w-3xl mx-auto">
                 <ScrollReveal>
-                    <span className="text-brand-primary font-bold text-xs uppercase tracking-widest mb-4 block">Tech Stack & Logic</span>
-                    <h2 className="text-4xl md:text-5xl font-bold text-brand-black mb-8 tracking-tight font-heading">The Architectural Backbone</h2>
-                    <p className="text-brand-black/60 font-light leading-relaxed">
-                        Every tool chosen serves a specific purpose in the system's scalability, security, and performance matrix.
+                    <span className="text-brand-primary font-bold text-xs uppercase tracking-widest mb-4 block">02. The Infrastructure</span>
+                    <h2 className="text-4xl md:text-5xl font-bold text-brand-black mb-8 tracking-tight font-heading">Hardening the Core</h2>
+                    <p className="text-brand-black/60 font-light leading-relaxed max-w-2xl mx-auto">
+                        {project.description || "Our architectural response focused on decoupling legacy dependencies and implementing high-concurrency event-driven processing."}
                     </p>
                 </ScrollReveal>
             </div>
@@ -209,14 +209,14 @@ export default async function ProjectPage({ params }: PageProps) {
                     <div className="lg:col-span-7">
                         <ScrollReveal>
                             <div className="flex items-center gap-3 text-brand-primary font-bold text-xs uppercase tracking-widest mb-8">
-                                <BarChart3 className="w-5 h-5" /> ROI & Engagement
+                                <BarChart3 className="w-5 h-5" /> 03. The Outcome
                             </div>
                             <h2 className="text-4xl md:text-6xl font-bold mb-10 tracking-tighter font-heading leading-tight">
-                                Measurable Impact. <br />
-                                <span className="text-white/40">Beyond the Code.</span>
+                                Performance <br />
+                                <span className="text-white/40">Verified.</span>
                             </h2>
-                            <p className="text-xl text-white/50 font-light leading-relaxed mb-12">
-                                {project.roi_metrics}
+                            <p className="text-xl text-white/50 font-light leading-relaxed mb-12 border-l-2 border-brand-primary pl-6">
+                                {project.roi_metrics || "The resulting infrastructure handles 10x peak load with zero degradation in response latency."}
                             </p>
                         </ScrollReveal>
                     </div>

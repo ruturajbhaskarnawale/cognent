@@ -53,7 +53,7 @@ class EmailService:
 
             # Create SSL context with certifi certificates
             if self.skip_ssl_verify:
-                print("⚠️ Warning: Skipping SSL verification for SMTP (Local Only)")
+                print("Warning: Skipping SSL verification for SMTP (Local Only)")
                 context = ssl._create_unverified_context()
             else:
                 context = ssl.create_default_context(cafile=certifi.where())
@@ -69,11 +69,11 @@ class EmailService:
                 tls_context=context,
             )
 
-            print(f"✅ Email sent successfully to {to_email}")
+            print(f"Email sent successfully to {to_email}")
             return True
 
         except Exception as e:
-            print(f"❌ Failed to send email to {to_email}: {str(e)}")
+            print(f"Failed to send email to {to_email}: {str(e)}")
             return False
 
     async def send_contact_form_to_admin(

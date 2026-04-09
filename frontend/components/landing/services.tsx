@@ -9,60 +9,39 @@ import { MagneticButton } from "@/components/animations/magnetic-button";
 
 import { CursorTrail } from "@/components/effects/cursor-trail";
 
-const services = [
+const products = [
   {
-    title: "AI & ML Solutions",
-    description: "Leverage advanced artificial intelligence to automate decision-making. LLM integration & predictive analytics.",
-    icon: Brain,
-    color: "bg-purple-50 text-purple-600",
-    spotlight: "rgba(124, 58, 237, 0.1)",
-    href: "/services/ai-integration",
-    className: "md:col-span-8 lg:col-span-7",
-  },
-  {
-    title: "Custom Automation",
-    description: "Bespoke automation tools designed to eliminate manual bottlenecks.",
-    icon: Bot,
+    title: "Scale Readiness Audit",
+    problem: "You don't know where your system will break next.",
+    outcome: "A 360° technical roadmap and risk heatmap.",
+    icon: Compass,
     color: "bg-blue-50 text-blue-600",
     spotlight: "rgba(37, 99, 235, 0.1)",
-    href: "/services/automation",
-    className: "md:col-span-4 lg:col-span-5",
+    href: "/architecture-audit",
+    tag: "The Diagnostic",
+    features: ["Risk Heatmap", "Architecture Map", "ROI Roadmap"]
   },
   {
-    title: "Technical Debugging",
-    description: "Complex problem solving for legacy systems. We identify root causes.",
-    icon: Wrench,
-    color: "bg-teal-50 text-teal-600",
-    spotlight: "rgba(13, 148, 136, 0.1)",
-    href: "/services/debugging",
-    className: "md:col-span-4 lg:col-span-4",
-  },
-  {
-    title: "Web & App Development",
-    description: "Enterprise-grade web and mobile applications built for scale. Modern stacks like Next.js.",
+    title: "System Build / Optimization",
+    problem: "Your current infrastructure is a bottleneck to growth.",
+    outcome: "High-performance foundation ready for 100x traffic.",
     icon: Code,
-    color: "bg-orange-50 text-orange-600",
-    spotlight: "rgba(249, 115, 22, 0.1)",
-    href: "/services/development",
-    className: "md:col-span-8 lg:col-span-8",
+    color: "bg-brand-primary/10 text-brand-primary",
+    spotlight: "rgba(124, 58, 237, 0.1)",
+    href: "/solutions/build",
+    tag: "The Implementation",
+    features: ["Cloud-Native Setup", "Database Hardening", "API Optimization"]
   },
   {
-    title: "End-to-End Guidance",
-    description: "Strategic project management from concept to deployment.",
-    icon: Compass,
-    color: "bg-rose-50 text-rose-600",
-    spotlight: "rgba(225, 29, 72, 0.1)",
-    href: "/services/consulting",
-    className: "md:col-span-6 lg:col-span-6",
-  },
-  {
-    title: "System Optimization",
-    description: "Enhancing existing platforms for speed, security, and reliability.",
-    icon: TrendingUp,
-    color: "bg-lime-50 text-lime-600",
-    spotlight: "rgba(101, 163, 13, 0.1)",
-    href: "/services/optimization",
-    className: "md:col-span-6 lg:col-span-6",
+    title: "Engineering Partnership",
+    problem: "You need a technical partner, not just a freelancer.",
+    outcome: "Continuous architecture evolution and AI integration.",
+    icon: Brain,
+    color: "bg-emerald-50 text-emerald-600",
+    spotlight: "rgba(16, 185, 129, 0.1)",
+    href: "/solutions/partnership",
+    tag: "The Growth",
+    features: ["Embedded CTO support", "AI Agent Integration", "24/7 Scaling"]
   },
 ];
 
@@ -98,31 +77,58 @@ export function ServicesSection() {
           </div>
         </ScrollReveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-8">
-          {services.map((service, index) => (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {products.map((product, index) => (
             <Link 
-              key={service.title} 
-              href={service.href}
-              className={`${service.className} group/link`}
+              key={product.title} 
+              href={product.href}
+              className="group/link flex h-full"
             >
               <SpotlightCard 
-                className="h-full flex flex-col justify-between"
-                spotlightColor={service.spotlight}
+                className="h-full flex flex-col"
+                spotlightColor={product.spotlight}
               >
-                <div>
-                  <div className={`w-16 h-16 rounded-2xl ${service.color} flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500`}>
-                    <service.icon className="h-8 w-8 transition-transform duration-500 group-hover:rotate-12" />
+                <div className="flex-1">
+                  <div className="flex items-center justify-between mb-8">
+                    <div className={`w-14 h-14 rounded-2xl ${product.color} flex items-center justify-center group-hover:scale-110 transition-transform duration-500`}>
+                      <product.icon className="h-7 w-7" />
+                    </div>
+                    <span className="text-[10px] font-bold uppercase tracking-widest px-3 py-1 bg-black/5 rounded-full text-brand-black/40">
+                      {product.tag}
+                    </span>
                   </div>
+                  
                   <h3 className="text-2xl font-bold text-brand-black mb-4 group-hover:text-brand-primary transition-colors duration-300">
-                    {service.title}
+                    {product.title}
                   </h3>
-                  <p className="text-brand-black/60 leading-relaxed mb-8 text-lg">
-                    {service.description}
-                  </p>
+
+                  <div className="space-y-4 mb-8">
+                    <div>
+                        <span className="text-[10px] font-black uppercase text-red-500 tracking-tighter block mb-1">Problem</span>
+                        <p className="text-brand-black/60 text-sm font-medium leading-relaxed italic">
+                            "{product.problem}"
+                        </p>
+                    </div>
+                    <div>
+                        <span className="text-[10px] font-black uppercase text-brand-primary tracking-tighter block mb-1">Outcome</span>
+                        <p className="text-brand-black font-semibold text-sm leading-relaxed">
+                            {product.outcome}
+                        </p>
+                    </div>
+                  </div>
+
+                  <ul className="space-y-3 mb-8 border-t border-black/5 pt-6">
+                    {product.features.map((feature, idx) => (
+                        <li key={idx} className="flex items-center gap-2 text-xs font-medium text-brand-black/50">
+                            <div className="w-1.5 h-1.5 rounded-full bg-brand-primary/40" />
+                            {feature}
+                        </li>
+                    ))}
+                  </ul>
                 </div>
 
-                <div className="flex items-center text-sm font-bold text-brand-black/40 group-hover:text-brand-primary transition-all duration-300">
-                  <span className="mr-2 uppercase tracking-widest text-[10px]">Explore Service</span>
+                <div className="flex items-center text-sm font-bold text-brand-black/40 group-hover:text-brand-primary transition-all duration-300 mt-auto">
+                  <span className="mr-2 uppercase tracking-widest text-[10px]">Select Tier</span>
                   <div className="w-8 h-[2px] bg-brand-black/10 transition-all duration-300 group-hover:w-12 group-hover:bg-brand-primary" />
                   <ArrowRight className="ml-2 h-4 w-4 opacity-0 -translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0" />
                 </div>

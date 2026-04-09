@@ -10,6 +10,8 @@ import {
   ChevronDown, 
   Menu, 
   X, 
+  Search,
+  Shield,
   ArrowRight, 
   Brain, 
   Bot, 
@@ -35,27 +37,39 @@ const serviceIcons: Record<string, any> = {
 
 const navItems = [
   { 
-    name: "Services", 
-    href: "/services",
-    dropdown: Object.values(servicesData).map(service => ({
-      name: service.title,
-      description: service.shortDescription,
-      href: `/services/${service.slug}`,
-      icon: serviceIcons[service.slug] || Sparkles
-    }))
-  },
-  { 
-    name: "Success Stories", 
-    href: "/work",
+    name: "Solutions", 
+    href: "/solutions",
     dropdown: [
-      { name: "All Projects", description: "Vew our complete portfolio of engineering excellence.", href: "/work", icon: LayoutGrid },
-      { name: "Enterprise Solutions", description: "Custom platforms built for global scale.", href: "/work/enterprise", icon: Globe },
-      { name: "Startup Launchpad", description: "MVPs and rapid scaling for tomorrow's unicorns.", href: "/work/startup", icon: Zap },
+      { 
+        name: "Scale Readiness Audit", 
+        description: "The 360° technical diagnostic to find your breaking points.", 
+        href: "/architecture-audit", 
+        icon: Search 
+      },
+      { 
+        name: "System Build & Optimization", 
+        description: "Hardening your infrastructure for 10x traffic spikes.", 
+        href: "/solutions/build", 
+        icon: Code 
+      },
+      { 
+        name: "Engineering Partnership", 
+        description: "Continuous architecture evolution and AI agent integration.", 
+        href: "/solutions/partnership", 
+        icon: Brain 
+      },
     ]
   },
-  { name: "Capabilities", href: "/#capabilities" },
+  { 
+    name: "Proof", 
+    href: "/work",
+    dropdown: [
+      { name: "Survival Stories", description: "Case studies of systems that survived massive growth.", href: "/work", icon: LayoutGrid },
+      { name: "Enterprise Scale", description: "High-concurrency platforms built for global traffic.", href: "/work/enterprise", icon: Globe },
+    ]
+  },
   { name: "Process", href: "/#process" },
-  { name: "Get Estimate", href: "/estimate" },
+  { name: "Audit", href: "/architecture-audit" },
 ];
 
 export function Navbar() {
@@ -178,9 +192,9 @@ export function Navbar() {
 
           {/* Action Button & Mobile Toggle */}
           <div className="flex items-center gap-4 relative z-50">
-            <Link href="/contact" className="hidden sm:block">
+            <Link href="/architecture-audit" className="hidden sm:block">
               <Button className="rounded-full bg-brand-black text-white hover:bg-brand-primary transition-all duration-500 px-8 h-11 font-bold shadow-lg hover:shadow-brand-primary/20 group">
-                Consult Experts
+                Get Audit
                 <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>

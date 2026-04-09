@@ -68,7 +68,7 @@ export function Footer() {
               <span className="text-2xl font-bold font-heading text-brand-black tracking-tight">Cognent</span>
             </Link>
             <p className="text-lg text-brand-black/60 leading-relaxed max-w-sm font-light">
-              Engineering the future of enterprise work with bespoke AI, automation, and world-class software architecture.
+              Engineering high-performance architecture and infrastructure hardening for systems that don't break at scale.
             </p>
             <div className="flex space-x-5">
               {[
@@ -89,17 +89,40 @@ export function Footer() {
             </div>
           </div>
 
+          <div className="lg:col-span-2 space-y-6">
+            <h4 className="text-sm font-black uppercase tracking-widest text-brand-black">Solutions</h4>
+            <ul className="space-y-4 text-sm font-medium">
+              <li><Link href="/architecture-audit" className="text-brand-black/60 hover:text-brand-primary transition-colors">Scale Audit</Link></li>
+              <li><Link href="/solutions/build" className="text-brand-black/60 hover:text-brand-primary transition-colors">Systems Build</Link></li>
+              <li><Link href="/solutions/partnership" className="text-brand-black/60 hover:text-brand-primary transition-colors">Partnership</Link></li>
+            </ul>
+          </div>
+
+          <div className="lg:col-span-2 space-y-6">
+            <h4 className="text-sm font-black uppercase tracking-widest text-brand-black">Company</h4>
+            <ul className="space-y-4 text-sm font-medium">
+              <li><Link href="/about" className="text-brand-black/60 hover:text-brand-primary transition-colors">Our Philosophy</Link></li>
+              <li><Link href="/work" className="text-brand-black/60 hover:text-brand-primary transition-colors">Proof of Scale</Link></li>
+              <li><Link href="/contact" className="text-brand-black/60 hover:text-brand-primary transition-colors">Expert Access</Link></li>
+            </ul>
+          </div>
+
           {/* Column 4: Newsletter/CTA */}
-          <div className="lg:col-span-8 space-y-8 p-8 rounded-[2.5rem] bg-brand-primary/[0.03] border border-brand-primary/10 relative overflow-hidden">
+          <div className="lg:col-span-4 space-y-8 p-8 rounded-[2.5rem] bg-brand-primary/[0.03] border border-brand-primary/10 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-32 h-32 bg-brand-primary/10 blur-3xl -translate-y-1/2 translate-x-1/2" />
             
             <div className="space-y-4 relative z-10">
               <h4 className="text-2xl font-bold text-brand-black tracking-tight leading-tight">
-                Join the engineering edge.
+                Secure your scale.
               </h4>
-              <p className="text-sm text-brand-black/60 leading-relaxed">
-                Receive quarterly insights into high-performance engineering and AI automation. No fluff, just code.
+              <p className="text-sm text-brand-black/60 leading-relaxed font-medium">
+                Get the 360° technical diagnostic that identifies your breaking points before they become disasters.
               </p>
+              <Link href="/architecture-audit">
+                 <Button className="w-full rounded-2xl bg-brand-black text-white hover:bg-brand-primary transition-all h-12 font-bold">
+                    Book Scale Audit
+                 </Button>
+              </Link>
             </div>
             
             <form onSubmit={handleSubscribe} className="space-y-4 relative z-10">

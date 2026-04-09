@@ -242,3 +242,25 @@ export async function notifyEstimate(data: EstimateNotifyData): Promise<EmailRes
 
     return res.json();
 }
+
+export interface AuditRequestData {
+    name: string;
+    email: string;
+    website?: string;
+    challenges?: string;
+}
+
+export async function sendAuditRequest(data: AuditRequestData): Promise<EmailResponse> {
+    const res = await fetch(`${API_URL}/api/v1/audit`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+    });
+
+    if (!res.ok) {
+        const error = await res.json();
+        throw new Error(error.detail || "Audit request failed");
+    }
+
+    return res.json();
+}

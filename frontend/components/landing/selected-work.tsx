@@ -172,12 +172,12 @@ export function SelectedWork({ projects }: SelectedWorkProps) {
               <motion.span 
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                className="px-4 py-1.5 rounded-full bg-brand-primary/10 text-brand-primary font-medium text-sm mb-6 inline-block"
+                className="px-4 py-1.5 rounded-full bg-brand-primary/10 text-brand-primary font-bold text-xs uppercase tracking-widest mb-6 inline-block"
               >
-                Portfolio
+                Proof of Scale
               </motion.span>
               <h2 className="text-4xl md:text-6xl font-bold font-heading text-brand-black tracking-tight">
-                Selected <span className="bg-gradient-to-r from-brand-primary via-brand-secondary to-brand-primary bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient-slow">Showcase.</span>
+                Survival <span className="bg-gradient-to-r from-brand-primary via-brand-secondary to-brand-primary bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient-slow">Stories.</span>
               </h2>
             </div>
           </ScrollReveal>
@@ -187,7 +187,7 @@ export function SelectedWork({ projects }: SelectedWorkProps) {
               <Link href="/work" className="group">
                 <Button size="lg" className="relative group overflow-hidden rounded-full bg-brand-black text-white px-10 h-14 text-lg font-bold shadow-2xl hover:bg-brand-primary transition-all duration-500 border-none">
                   <span className="relative z-10 flex items-center gap-2">
-                    Deep Dive Into All Work
+                    View Scaling Proof
                     <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </span>
                   {/* Pulsing Glow */}

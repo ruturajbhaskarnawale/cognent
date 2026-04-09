@@ -7,8 +7,7 @@ from dotenv import load_dotenv
 # Load environment variables early
 load_dotenv()
 
-from app.api.v1 import leads, compliance, projects, auth, estimate
-from app.api.v1.contact import router as contact_router
+from app.api.v1 import leads, compliance, projects, auth, estimate, contact, audit
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -49,10 +48,11 @@ app.add_middleware(
 
 # Include Routers
 app.include_router(auth.router, prefix="/api/v1/auth", tags=["Authentication"])
+app.include_router(audit.router, prefix="/api/v1/audit", tags=["Audit"])
 app.include_router(leads.router, prefix="/api/v1/leads", tags=["Leads"])
 app.include_router(compliance.router, prefix="/api/v1/compliance", tags=["Compliance"])
 app.include_router(projects.router, prefix="/api/v1/projects", tags=["Projects"])
-app.include_router(contact_router, prefix="/api/v1", tags=["Contact"])
+app.include_router(contact.router, prefix="/api/v1/contact", tags=["Contact"])
 app.include_router(estimate.router, prefix="/api/v1/estimate", tags=["Estimate"])
 
 @app.get("/")

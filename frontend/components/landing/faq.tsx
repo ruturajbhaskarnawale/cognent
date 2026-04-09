@@ -10,24 +10,24 @@ import { CursorTrail } from "@/components/effects/cursor-trail";
 
 const faqs = [
   {
-    question: "What is your typical project timeline?",
-    answer: "Timelines depend on complexity. Most engineering projects range from 4-8 weeks for focused solutions to 4-6 months for full-scale enterprise platforms.",
+    question: "What does a Scale Readiness Audit actually deliver?",
+    answer: "You receive a 360° technical diagnostic including a System Architecture Map, a prioritized Risk Heatmap, and a 12-month Optimization Roadmap. It’s a definitive blueprint for your next 10x growth phase.",
   },
   {
-    question: "How do you handle legacy system integration?",
-    answer: "We specialize in 'digital surgery'—gradually refactoring legacy monoliths into modern, scalable microservices without interrupting your business operations.",
+    question: "How much does a typical engagement cost?",
+    answer: "Our entry-level Scale Readiness Audit starts at ₹50,000. Core build and optimization projects typically range from ₹2L to ₹10L+ depending on the complexity of the architecture and required outcomes.",
   },
   {
-    question: "Do you provide dedicated post-launch engineering?",
-    answer: "Absolutely. We offer premium support tiers that include proactive monitoring, security hardening, and continuous performance optimization for your scale.",
+    question: "Why focus on architecture instead of just building features?",
+    answer: "Features built on a weak foundation become technical debt. We believe in 'Architecture-First'—ensuring your system is hardened and scalable before adding complexity, saving you from costly rebuilds later.",
   },
   {
-    question: "What is your core technology stack?",
-    answer: "We are experts in the modern high-performance stack: Next.js/React, TypeScript, Go/Rust for performance critical parts, and robust cloud infra on AWS/GCP.",
+    question: "How do you handle 'digital surgery' on legacy codebases?",
+    answer: "We specialize in refactoring monolithic systems into modern, cloud-native microservices with zero downtime. We identify the critical paths and modernize them incrementally to ensure business continuity.",
   },
   {
-    question: "Can you help as an external R&D team?",
-    answer: "Yes, we often act as an extension of your internal team, tackling high-complexity R&D challenges that require specialized engineering expertise.",
+    question: "What is the Engineering Partnership model?",
+    answer: "This is our premium tier where we act as your embedded technical partner. We handle continuous scaling, security hardening, and AI agent integration, evolving your system as your business grows.",
   },
 ];
 

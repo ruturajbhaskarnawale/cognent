@@ -69,11 +69,13 @@ def create_project(
     project_dict = project_data.model_dump()
     
     # Convert scheduled_publish_at string to datetime if provided
-    if project_dict.get('scheduled_publish_at'):
+    if project_dict.get('scheduled_publish_at') and project_dict['scheduled_publish_at'].strip():
         try:
             project_dict['scheduled_publish_at'] = datetime.fromisoformat(project_dict['scheduled_publish_at'].replace('Z', '+00:00'))
         except:
             project_dict['scheduled_publish_at'] = None
+    else:
+        project_dict['scheduled_publish_at'] = None
     
     project = Project(**project_dict)
     session.add(project)
@@ -108,11 +110,13 @@ def update_project(
     project_dict = project_data.model_dump()
     
     # Convert scheduled_publish_at string to datetime if provided
-    if project_dict.get('scheduled_publish_at'):
+    if project_dict.get('scheduled_publish_at') and project_dict['scheduled_publish_at'].strip():
         try:
             project_dict['scheduled_publish_at'] = datetime.fromisoformat(project_dict['scheduled_publish_at'].replace('Z', '+00:00'))
         except:
             project_dict['scheduled_publish_at'] = None
+    else:
+        project_dict['scheduled_publish_at'] = None
     
     for key, value in project_dict.items():
         setattr(project, key, value)
