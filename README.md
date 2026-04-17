@@ -123,9 +123,9 @@ The system follows a clean **Decoupled Architecture** pattern. The FastAPI backe
 **Ruturaj Bhaskar Nawale**  
 *Technical Architect & Full-Stack Developer*
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?logo=linkedin)](https://linkedin.com/in/yourprofile)
-[![GitHub](https://img.shields.io/badge/GitHub-Profile-black?logo=github)](https://github.com/yourusername)
-[![Portfolio](https://img.shields.io/badge/Portfolio-Visit-orange)](https://yourportfolio.com)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?logo=linkedin)](https://www.linkedin.com/in/ruturaj-nawale-863418288)
+[![GitHub](https://img.shields.io/badge/GitHub-Profile-black?logo=github)](https://github.com/ruturajbhaskarnawale)
+[![Portfolio](https://img.shields.io/badge/Portfolio-Visit-orange)](https://ruturaj-nawale-portfolio.vercel.app)
 
 ---
 
