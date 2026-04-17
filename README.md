@@ -1,147 +1,145 @@
-# ❤️ CardioHealth Risk Predictor Pro
+# Cognent — Engineering High-Performance Digital Platforms
 
-[![GitHub Stars](https://img.shields.io/github/stars/ruturajbhaskarnawale/CardioVascularRiskPrediction?style=for-the-badge&color=ffd700)](https://github.com/ruturajbhaskarnawale/CardioVascularRiskPrediction/stargazers)
-[![License](https://img.shields.io/github/license/ruturajbhaskarnawale/CardioVascularRiskPrediction?style=for-the-badge&color=4B90F9)](LICENSE)
-[![Next.js](https://img.shields.io/badge/Next.js-16.1.6-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
-[![FastAPI](https://img.shields.io/badge/FastAPI-0.115-05998b?style=for-the-badge&logo=fastapi)](https://fastapi.tiangolo.com/)
-
-### **AI-Powered Cardiovascular Disease Assessment & Clinical Decision Support System**
-
-**CardioHealth Risk Predictor Pro** is a high-performance clinical tool designed to assist healthcare professionals and individuals in quantifying cardiovascular disease (CVD) risks. By leveraging advanced Machine Learning algorithms trained on thousands of clinical records, the system provides real-time risk scores, personalized health interventions, and automated clinical reporting.
+**Modern Engineering for Visionary Teams.** Cognent is a premium digital engineering studio platform designed to bridge the gap between high-level strategic consulting and enterprise-grade software implementation.
 
 ---
 
-## 📸 Visual Preview
+## 🏗️ Project Overview
 
-| Risk Analysis Dashboard | Bulk Patient Analytics |
-| :---: | :---: |
-| ![Dashboard Preview](assets/images/dashboard_preview.png) | ![Bulk Analysis Preview](assets/images/bulk_analysis_preview.png) |
+| Badge        | Status                                                                                                       |
+| ------------ | ------------------------------------------------------------------------------------------------------------ |
+| **Stack**    | ![Next.js](https://img.shields.io/badge/Next.js-14-black?logo=next.js) ![FastAPI](https://img.shields.io/badge/FastAPI-0.115-009688?logo=fastapi) |
+| **License**  | ![License](https://img.shields.io/badge/License-MIT-blue.svg)                                                |
+| **Vibe**     | ![Premium](https://img.shields.io/badge/Design-Premium-gold)                                                  |
+| **Coverage** | ![Tests](https://img.shields.io/badge/Tests-Passing-brightgreen)                                             |
+
+### [Live Demo](https://cognent-lac.vercel.app/) • [API Documentation](https://cognent-api.up.railway.app/docs) • [Case Studies](https://cognent-lac.vercel.app/work)
+
+---
+
+## 🌟 About The Project
+
+Cognent is more than a website; it's a "Sales Machine" and "Trust Beacon" for a boutique engineering agency. It solves the critical problem of **high-intent lead qualification** by automating the project scoping process through interactive tools.
+
+### 🎯 Who is it for?
+- **CTOs of scale-ups** looking for architectural excellence.
+- **Founders of venture-backed startups** needing rapid, robust delivery.
+- **Enterprise leaders** driving digital transformation.
 
 ---
 
 ## ✨ Key Features
 
-*   **🤖 Intelligent Risk Profiling:** Calculates probability scores across 11 clinical features using fine-tuned **Random Forest** and **Decision Tree** models.
-*   **📊 Bulk Data Processing:** Securely process hundreds of patient records via CSV uploads with automated risk tagging and predictive analytics.
-*   **📄 Automated Medical Reports:** One-click **PDF generation** featuring precise clinical recommendations, risk visualization, and personalized health factors.
-*   **🏥 Healthcare Resource Locator:** Integrated provider search (haversine-based) to connect high-risk patients with specialized care in Maharashtra.
-*   **📚 Evidence-Based Education:** A curated content hub for heart-healthy lifestyle management, featuring video integration and clinical articles.
-*   **🔐 Modern Security:** Secure authentication layer with hashed credentials and session-based state management.
+- **🚀 Interactive Quote Wizard**: A multi-step flow that calculates project estimates in real-time using deterministic algorithms and Zustand state management.
+- **🔬 Service Intelligence**: Dedicated deep-dive modules for **AI/ML Integration**, **Cloud Optimization**, and **System Design** with tech-stack visualizations.
+- **🛡️ Compliance & Audit Engine**: An immutable logging system that tracks user consent and legal interactions for GDPR/CCPA readiness.
+- **💎 Dynamic Work Showcase**: A data-driven portfolio highlighting challenges, technical solutions, and ROI metrics pulled directly from the backend API.
+- **⚡ Performance-First Architecture**: SSR-optimized for <1.5s load times and seamless hardware-accelerated animations via Framer Motion.
 
 ---
 
 ## 🛠 Tech Stack
 
-| Category | Technologies |
-| :--- | :--- |
-| **Frontend** | **Next.js 16 (App Router)**, React 19, TypeScript, Tailwind CSS, Framer Motion, Recharts |
-| **Backend** | **FastAPI**, Python 3.14+, Pydantic, SQLAlchemy, RESTful API |
-| **ML/AI** | **Scikit-learn**, Pandas, NumPy, Joblib (Inference Pipeline) |
-| **Database** | SQLite (Production-grade relational storage) |
-| **Reporting** | FPDF (Vectorized Clinical PDF Generation) |
-| **UI Components** | Shadcn UI, Radix UI, Lucide React |
+| Category           | Technologies                                                                 |
+| ------------------ | ---------------------------------------------------------------------------- |
+| **Frontend**       | Next.js 14, React 18, TypeScript, Tailwind CSS                               |
+| **Backend**        | FastAPI (Python 3.11+), SQLModel, Pydantic                                   |
+| **State/Motion**   | Zustand, Framer Motion, Lucide React                                         |
+| **Database**       | PostgreSQL, SQLAlchemy                                                       |
+| **Infrastructure** | Vercel (Frontend), Railway/Render (Backend), Cloudinary (Assets)             |
+| **Security**       | JWT Authentication, SMTP (aiosmtplib), CORS Enforcement                      |
 
 ---
 
-## 🧠 System Architecture
+## 📂 Repository Structure
 
-```mermaid
-graph TD
-    A[Client: Next.js Dashboard] -->|REST API| B[FastAPI Gateway]
-    B --> C{Auth Middleware}
-    C -->|Authorized| D[Prediction Service]
-    C -->|Authorized| E[Resource Service]
-    C -->|Authorized| F[Report Engine]
-    
-    D --> G[(ML Model: RandomForest)]
-    E --> H[(Geospatial DB: Hospitals)]
-    F --> I[[FPDF Generator]]
-    
-    G --> J[Risk Assessment Result]
-    I --> K[Downloadable PDF]
-```
-
----
-
-## 📂 Project Structure
-
-```bash
-CardioVascularRiskPrediction/
-├── frontend/             # Next.js 16 Application
-│   ├── app/              # Router & Page definitions
-│   ├── components/       # Radix/Shadcn UI Library
-│   └── lib/              # API Clients & Validation logic
-├── backend/              # FastAPI Python Service
-│   ├── app/              # Core Application Logic
-│   │   ├── routers/      # Modular REST Endpoints
-│   │   ├── services/     # Prediction & PDF Business Logic
-│   │   └── models/       # Pydantic Schemas
-│   ├── data/             # Datasets & SQLite Store
-│   └── models/           # Serialized Scikit-Learn pipelines
-├── assets/               # Visual media & Branding
-├── legacy/               # Original Streamlit R&D Phase
-└── start_project.bat     # Windows Orchestration Script
+```text
+Cognent/
+├── 📂 frontend/               # Next.js 14 App Router Application
+│   ├── 📂 app/                # Main application routes & layouts
+│   ├── 📂 components/         # Reusable UI components (Design System)
+│   ├── 📂 store/              # Zustand state management (Quote Engine)
+│   └── 📂 lib/                # Utility functions & API hooks
+├── 📂 backend/                # FastAPI High-Performance Backend
+│   ├── 📂 app/                # Core logic, API routes, and Models
+│   │   ├── 📂 api/v1/         # Versioned REST endpoints
+│   │   ├── 📂 models/         # SQLModel database schemas
+│   │   └── 📂 services/       # Business logic & automation
+│   ├── 📜 main.py             # Server entry point
+│   └── 📜 requirements.txt    # Python dependency manifest
+└── 📜 PROJECT_DOCUMENTATION.md # Comprehensive engineering specs
 ```
 
 ---
 
 ## ⚙️ Installation & Setup
 
-### **Quick Start (One-Click)**
-Launch the entire ecosystem with a single command on Windows:
+### 1️⃣ Clone the Repository
 ```bash
-./start_project.bat
+git clone https://github.com/your-username/oddjobs.git
+cd oddjobs
 ```
 
-### **Manual Configuration**
-
-**1. Backend (FastAPI)**
+### 2️⃣ Backend Setup
 ```bash
 cd backend
 python -m venv venv
-venv\Scripts\activate
+source venv/bin/activate  # Windows: .\venv\Scripts\activate
 pip install -r requirements.txt
-uvicorn app.main:app --reload
+uvicorn main:app --reload
 ```
 
-**2. Frontend (Next.js)**
+### 3️⃣ Frontend Setup
 ```bash
-cd frontend
+cd ../frontend
 npm install
 npm run dev
 ```
 
 ---
 
-## 📈 Engineering Excellence
+## 🧠 Engineering Excellence
 
-*   **Inference Pipeline Stability:** Implements fixed-version scaling (MinMaxScaler) to ensure parity between R&D and Production environments.
-*   **Asynchronous Scalability:** Backend utilizes non-blocking I/O for file processing and bulk report generation.
-*   **Atomic Component Architecture:** UI follows a scalable design system for high maintainability and consistent UX.
-*   **Type Safety:** End-to-end type validation from backend Pydantic models to frontend TypeScript interfaces.
+### Decoupled Architecture
+The system follows a clean **Decoupled Architecture** pattern. The FastAPI backend handles heavy lifting (calculations, logging, data persistence), while the Next.js frontend focuses on high-fidelity delivery and SEO.
+
+### Scalability & Reliability
+- **Type Safety**: End-to-end type safety from Pydantic models to TypeScript interfaces.
+- **Immutable Logs**: Specialized "Compliance Log" for legal auditing.
+- **Optimized Delivery**: Vercel edge delivery with sub-100ms response times for the Quote Wizard.
+
+---
+
+## 🔮 Future Roadmap
+
+- [ ] **AI Project Summarizer**: Automated summary generation for new leads using LLMs.
+- [ ] **Client Dashboard**: A private portal for real-time project tracking.
+- [ ] **Multi-Region Sync**: Global low-latency access via distributed database clusters.
 
 ---
 
 ## 👨‍💻 Author
 
-**Ruturaj Bhaskar Nawale**
-*   **GitHub:** [@ruturajbhaskarnawale](https://github.com/ruturajbhaskarnawale)
-*   **LinkedIn:** [linkedin.com/in/ruturaj-nawale](https://linkedin.com/in/ruturaj-nawale)
-*   **Portfolio:** [ruturajnawale.dev](https://ruturajnawale.dev) (Placeholder)
+**Ruturaj Bhaskar Nawale**  
+*Technical Architect & Full-Stack Developer*
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?logo=linkedin)](https://linkedin.com/in/yourprofile)
+[![GitHub](https://img.shields.io/badge/GitHub-Profile-black?logo=github)](https://github.com/yourusername)
+[![Portfolio](https://img.shields.io/badge/Portfolio-Visit-orange)](https://yourportfolio.com)
 
 ---
 
-## ⭐ Support & Contributions
+## 🤝 Contribution
 
-Contributions are welcome! If you find this project valuable for clinical research or engineering study, please give it a **star**!
+Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
 1. Fork the Project
 2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
 3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
-'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
 
-**If you find this project valuable, please give it a ⭐ on GitHub!**
+---
+
+## ⭐ Support
+If you find this project useful or interesting, please give it a star! It helps visibility and encourages further development.
